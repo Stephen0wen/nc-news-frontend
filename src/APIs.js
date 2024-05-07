@@ -7,3 +7,11 @@ export const getUser = (username) => {
             return user;
         });
 };
+
+export const getTopics = () => {
+    return axios
+        .get(`https://so-news.onrender.com/api/topics`)
+        .then(({ data: { topics } }) => {
+            return topics;
+        });
+};

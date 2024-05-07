@@ -1,11 +1,13 @@
+import Topics from "../Topics/Topics";
 import Welcome from "../Welcome/Welcome";
 import "./Home.css";
 
 const Home = ({ user }) => {
     return (
-        <section id="home">
+        <main id="home">
             <Welcome user={user} />
-        </section>
+            <Topics />
+        </main>
     );
 };
 
