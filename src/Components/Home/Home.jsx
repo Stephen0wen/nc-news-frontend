@@ -1,7 +1,7 @@
 import "./Home.css";
 
 const Home = () => {
-    return <p>Home</p>;
+    return <section id="home">Home</section>;
 };
 
 export default Home;

@@ -4,10 +4,10 @@ import Login from "../Login/Login";
 
 const Header = () => {
     return (
-        <div className="header">
+        <header id="header">
             <Logo />
             <Login />
-        </div>
+        </header>
     );
 };
 

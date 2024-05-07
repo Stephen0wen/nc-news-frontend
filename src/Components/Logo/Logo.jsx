@@ -1,7 +1,7 @@
 import "./Logo.css";
 
 const Logo = () => {
-    return <p>Logo</p>;
+    return <div>Logo</div>;
 };
 
 export default Logo;
