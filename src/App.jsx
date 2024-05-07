@@ -1,8 +1,18 @@
 import { useState } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Components/Home/Home";
+import Header from "./Components/Header/Header";
 
 function App() {
-    return <></>;
+    const [user, setUser] = useState({});
+    return (
+        <>
+            <Header user={user} setUser={setUser} />
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </>
+    );
 }
 
 export default App;
