@@ -12,8 +12,9 @@
 #login-popup > form {
     opacity: 1;
     border: 1px solid white;
-    width: 20rem;
+    width: 18rem;
     height: 15rem;
+    background-color: #000;
 }
 
 #login-popup > form > fieldset {

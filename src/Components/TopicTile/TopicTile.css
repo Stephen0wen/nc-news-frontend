@@ -1,0 +1,25 @@
+.topic-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    height: 5rem;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.topic-tile h2 {
+    padding: 0rem 0.5rem;
+}
+
+.topic-tile p {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    color: #fffa;
+    font-size: 0.8rem;
+    padding: 0rem 0.5rem;
+}
