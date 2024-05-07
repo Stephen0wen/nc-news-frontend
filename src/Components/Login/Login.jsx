@@ -1,5 +1,7 @@
 import "./Login.css";
 
-const Login = () => {};
+const Login = () => {
+    return <p>Login</p>;
+};
 
 export default Login;
