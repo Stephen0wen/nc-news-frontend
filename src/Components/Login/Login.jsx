@@ -16,13 +16,12 @@ const Login = ({ user, setUser }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const enteredUser =
-            event.target.parentElement.children[0].children[0].value;
+        const enteredUser = event.target[1].value;
         getUser(enteredUser)
             .then((apiUser) => {
                 setUser(apiUser);
             })
-            .catch((err) => {
+            .catch(() => {
                 setErrorMsg("User not found...");
             });
     };
@@ -34,20 +33,18 @@ const Login = ({ user, setUser }) => {
                     Login
                 </button>
                 <div id="login-popup" className={popupClasses}>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <button id="login-close" onClick={handleClose}>
                             X
                         </button>
-                        <fieldset>
+                        <div id="signin-fields">
                             <label>
                                 Username
-                                <input></input>
+                                <input id="username"></input>
                                 <p>{errorMsg}</p>
                             </label>
-                            <button type="submit" onClick={handleSubmit}>
-                                Sign In
-                            </button>
-                        </fieldset>
+                            <button type="submit">Sign In</button>
+                        </div>
                     </form>
                 </div>
             </>

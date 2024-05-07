@@ -17,7 +17,7 @@
     background-color: #000;
 }
 
-#login-popup > form > fieldset {
+#signin-fields {
     margin-top: 2rem;
     height: 80%;
     display: flex;
