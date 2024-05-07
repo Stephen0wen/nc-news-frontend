@@ -1,0 +1,17 @@
+.article-tile {
+    width: 90%;
+    height: 4rem;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0.5rem;
+}
+
+.article-tile > h2 {
+    font-size: 1rem;
+}
+
+.article-tile > h3 {
+    font-size: 0.8rem;
+}
