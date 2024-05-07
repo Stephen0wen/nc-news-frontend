@@ -1,4 +1,14 @@
+#topic {
+    flex-direction: column;
+}
+
 .topic-title {
     text-align: center;
     margin: 0.5rem 0;
+}
+
+#sort {
+    width: 6rem;
+    height: 2rem;
+    line-height: 0;
 }
