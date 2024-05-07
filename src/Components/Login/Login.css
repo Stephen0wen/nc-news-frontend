@@ -18,7 +18,7 @@
     border-radius: 0.5rem;
 }
 
-#login-popup > form > fieldset {
+#signin-fields {
     margin-top: 2rem;
     height: 80%;
     display: flex;
