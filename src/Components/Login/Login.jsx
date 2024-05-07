@@ -40,7 +40,10 @@ const Login = ({ user, setUser }) => {
                         <div id="signin-fields">
                             <label>
                                 Username
-                                <input id="username"></input>
+                                <input
+                                    id="username"
+                                    autoComplete="username"
+                                ></input
                                 <p>{errorMsg}</p>
                             </label>
                             <button type="submit">Sign In</button>

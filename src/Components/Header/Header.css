@@ -9,6 +9,8 @@
     width: 100%;
     height: 3rem;
     border-bottom: 1px solid white;
+    background-color: #242424;
+    box-shadow: 0 0 1rem 1rem #242424;
 }
 
 #header > * {
