@@ -15,3 +15,11 @@ export const getTopics = () => {
             return topics;
         });
 };
+
+export const getArticles = (queries) => {
+    return axios
+        .get(`https://so-news.onrender.com/api/articles`, queries)
+        .then(({ data: { articles } }) => {
+            return articles;
+        });
+};
