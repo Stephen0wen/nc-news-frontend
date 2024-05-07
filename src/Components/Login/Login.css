@@ -15,6 +15,7 @@
     width: 18rem;
     height: 15rem;
     background-color: #000;
+    border-radius: 0.5rem;
 }
 
 #login-popup > form > fieldset {

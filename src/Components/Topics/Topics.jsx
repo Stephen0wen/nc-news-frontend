@@ -15,7 +15,7 @@ const Topics = () => {
     return (
         <section id="topics" className="flex-center">
             {topics.map((topic) => {
-                return <TopicTile topic={topic} />;
+                return <TopicTile key={topic.slug} topic={topic} />;
             })}
         </section>
     );

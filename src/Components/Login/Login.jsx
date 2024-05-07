@@ -41,7 +41,10 @@ const Login = ({ user, setUser }) => {
                         <fieldset>
                             <label>
                                 Username
-                                <input></input>
+                                <input
+                                    id="username"
+                                    autoComplete="username"
+                                ></input>
                                 <p>{errorMsg}</p>
                             </label>
                             <button type="submit" onClick={handleSubmit}>
