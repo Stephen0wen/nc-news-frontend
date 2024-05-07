@@ -43,7 +43,7 @@ const Login = ({ user, setUser }) => {
                                 <input
                                     id="username"
                                     autoComplete="username"
-                                ></input
+                                ></input>
                                 <p>{errorMsg}</p>
                             </label>
                             <button type="submit">Sign In</button>
