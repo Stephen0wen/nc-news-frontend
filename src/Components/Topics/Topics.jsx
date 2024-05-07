@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../../APIs";
 import "./Topics.css";
+import TopicTile from "../TopicTile/TopicTile";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
 
     useEffect(() => {
-        const apiTopics = getTopics().then((apiTopics) => {
-            console.log(apiTopics);
+        getTopics().then((apiTopics) => {
             setTopics(apiTopics);
         });
     }, []);
@@ -15,7 +15,7 @@ const Topics = () => {
     return (
         <section id="topics" className="flex-center">
             {topics.map((topic) => {
-                return <div>{topic.slug}</div>;
+                return <TopicTile topic={topic} />;
             })}
         </section>
     );
