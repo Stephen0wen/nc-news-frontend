@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Expand.css";
 
-const Expand = ({ children, label }) => {
+const Expand = ({ children, label, expandId }) => {
     const [boxClasses, setBoxClasses] = useState("hidden");
 
     const handleClick = () => {
@@ -16,7 +16,9 @@ const Expand = ({ children, label }) => {
     return (
         <>
             <button onClick={handleClick}>{label}</button>
-            <div className={boxClasses}>{children}</div>
+            <div id={expandId} className={boxClasses}>
+                {children}
+            </div>
         </>
     );
 };
