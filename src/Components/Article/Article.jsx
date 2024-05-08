@@ -25,7 +25,7 @@ const Article = () => {
                     {article.body}
                 </p>
             </article>
-            <ArticleFooter slug={slug} />
+            <ArticleFooter slug={slug} comment_count={article.comment_count} />
         </>
     );
 };

@@ -18,16 +18,20 @@
     padding: 0;
 }
 
+#comment-count {
+    color: #aaaa;
+}
+
 #comments-container {
     justify-content: center;
     overflow: visible;
     margin: 0;
     width: 7rem;
     text-align: center;
-    border-top: 1px solid white;
 }
 
 #comments {
+    border-top: 1px solid white;
     position: absolute;
     left: 0;
     text-align: center;
