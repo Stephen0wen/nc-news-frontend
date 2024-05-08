@@ -18,10 +18,6 @@
     padding: 0;
 }
 
-#comment-count {
-    color: #aaaa;
-}
-
 #comments-container {
     justify-content: center;
     overflow: visible;
