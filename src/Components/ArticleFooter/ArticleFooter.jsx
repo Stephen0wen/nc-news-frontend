@@ -2,6 +2,7 @@ import "./ArticleFooter.css";
 import { Link } from "react-router-dom";
 import Expand from "../Expand/Expand";
 import Comments from "../Comments/Comments";
+import Vote from "../Vote/Vote";
 
 const ArticleFooter = ({ slug, comment_count, votes }) => {
     return (
@@ -22,10 +23,7 @@ const ArticleFooter = ({ slug, comment_count, votes }) => {
                     <Comments />
                 </Expand>
             </div>
-            <button>
-                Vote
-                <span className="count"> {votes}</span>
-            </button>
+            <Vote count={votes} />
         </div>
     );
 };

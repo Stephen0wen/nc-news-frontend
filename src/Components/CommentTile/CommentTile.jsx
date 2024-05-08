@@ -1,5 +1,6 @@
 import "./CommentTile.css";
 import { getDateTime } from "../../utils";
+import Vote from "../Vote/Vote";
 
 const CommentTile = ({ comment }) => {
     return (
@@ -12,10 +13,7 @@ const CommentTile = ({ comment }) => {
                 <p className="comment-timestamp">
                     {getDateTime(comment.created_at)}
                 </p>
-                <button className="comment-vote">
-                    Vote
-                    <span className="count"> {comment.votes}</span>
-                </button>
+                <Vote count={comment.votes} />
             </div>
         </div>
     );
