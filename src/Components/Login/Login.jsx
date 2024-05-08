@@ -17,6 +17,10 @@ const Login = ({ user, setUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const enteredUser = event.target[1].value;
+        if (enteredUser === "") {
+            setErrorMsg("Enter username...");
+            return;
+        }
         getUser(enteredUser)
             .then((apiUser) => {
                 setUser(apiUser);
@@ -34,7 +38,11 @@ const Login = ({ user, setUser }) => {
                 </button>
                 <div id="login-popup" className={popupClasses}>
                     <form onSubmit={handleSubmit}>
-                        <button id="login-close" onClick={handleClose}>
+                        <button
+                            type="button"
+                            id="login-close"
+                            onClick={handleClose}
+                        >
                             X
                         </button>
                         <div id="signin-fields">
