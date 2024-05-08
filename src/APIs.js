@@ -31,3 +31,12 @@ export const getArticle = (article_id) => {
             return article;
         });
 };
+
+export const getComments = (article_id) => {
+    console.log(article_id);
+    return axios
+        .get(`https://so-news.onrender.com/api/articles/${article_id}/comments`)
+        .then(({ data: { comments } }) => {
+            return comments;
+        });
+};

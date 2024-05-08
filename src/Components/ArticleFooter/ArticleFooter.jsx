@@ -1,6 +1,7 @@
 import "./ArticleFooter.css";
 import { Link } from "react-router-dom";
 import Expand from "../Expand/Expand";
+import Comments from "../Comments/Comments";
 
 const ArticleFooter = ({ slug, comment_count }) => {
     return (
@@ -18,7 +19,7 @@ const ArticleFooter = ({ slug, comment_count }) => {
                         </>
                     }
                 >
-                    <section id="comments">Comments will go here</section>
+                    <Comments></Comments>
                 </Expand>
             </div>
             <button>Vote</button>
