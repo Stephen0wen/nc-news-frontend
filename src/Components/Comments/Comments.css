@@ -4,5 +4,6 @@
     left: 0;
     text-align: center;
     width: 100vw;
-    height: 20rem;
+    max-width: 1000px;
+    padding-bottom: 1rem;
 }
