@@ -1,14 +1,29 @@
 import "./ArticleFooter.css";
 import { Link } from "react-router-dom";
-const ArticleFooter = ({ slug }) => {
+import Expand from "../Expand/Expand";
+import Comments from "../Comments/Comments";
+
+const ArticleFooter = ({ slug, comment_count }) => {
     return (
-        <footer id="article-footer" className="flex-center">
+        <div id="article-footer">
             <Link to={`/${slug}`}>
                 <button>{slug}</button>
             </Link>
-            <button>Comments</button>
+            <div>
+                <Expand
+                    expandId="comments-container"
+                    label={
+                        <>
+                            Comments{" "}
+                            <span id="comment-count">{comment_count}</span>
+                        </>
+                    }
+                >
+                    <Comments />
+                </Expand>
+            </div>
             <button>Vote</button>
-        </footer>
+        </div>
     );
 };
 
