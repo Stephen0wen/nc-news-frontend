@@ -17,8 +17,13 @@ const Article = () => {
 
     return (
         <>
-            <article>
+            <article id="article">
                 <h1>{article.title}</h1>
+                <h2>By {article.author}</h2>
+                <p>
+                    <img src={article.article_img_url} />
+                    {article.body}
+                </p>
             </article>
             <ArticleFooter slug={slug} />
         </>
