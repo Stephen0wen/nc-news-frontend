@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./Comments.css";
 import { getComments } from "../../APIs";
 import { useParams } from "react-router-dom";
+import CommentTile from "../CommentTile/CommentTile";
 
 const Comments = () => {
     const [comments, setComments] = useState([]);
@@ -15,12 +16,10 @@ const Comments = () => {
     }, []);
 
     return (
-        <section>
+        <section id="comments">
             {comments.map((comment) => {
                 return (
-                    <p key={comment.comment_id}>
-                        Comment #{comment.comment_id}
-                    </p>
+                    <CommentTile key={comment.comment_id} comment={comment} />
                 );
             })}
         </section>

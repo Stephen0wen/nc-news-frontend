@@ -29,12 +29,3 @@
     width: 7rem;
     text-align: center;
 }
-
-#comments {
-    border-top: 1px solid white;
-    position: absolute;
-    left: 0;
-    text-align: center;
-    width: 100vw;
-    height: 20rem;
-}

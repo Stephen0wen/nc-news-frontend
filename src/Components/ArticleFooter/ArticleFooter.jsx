@@ -5,7 +5,7 @@ import Comments from "../Comments/Comments";
 
 const ArticleFooter = ({ slug, comment_count }) => {
     return (
-        <footer id="article-footer">
+        <div id="article-footer">
             <Link to={`/${slug}`}>
                 <button>{slug}</button>
             </Link>
@@ -19,11 +19,11 @@ const ArticleFooter = ({ slug, comment_count }) => {
                         </>
                     }
                 >
-                    <Comments></Comments>
+                    <Comments />
                 </Expand>
             </div>
             <button>Vote</button>
-        </footer>
+        </div>
     );
 };
 
