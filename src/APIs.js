@@ -23,3 +23,11 @@ export const getArticles = (queries) => {
             return articles;
         });
 };
+
+export const getArticle = (article_id) => {
+    return axios
+        .get(`https://so-news.onrender.com/api/articles/${article_id}`)
+        .then(({ data: { article } }) => {
+            return article;
+        });
+};
