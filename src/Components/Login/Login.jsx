@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.css";
 import { getUser } from "../../APIs";
+import { UserContext } from "../../Contexts/UserContext";
 
-const Login = ({ user, setUser }) => {
+const Login = () => {
+    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+
     const [popupClasses, setPopupClasses] = useState("hidden");
     const [errorMsg, setErrorMsg] = useState("");
 
@@ -24,6 +27,7 @@ const Login = ({ user, setUser }) => {
         getUser(enteredUser)
             .then((apiUser) => {
                 setUser(apiUser);
+                setIsLoggedIn(true);
             })
             .catch(() => {
                 setErrorMsg("User not found...");

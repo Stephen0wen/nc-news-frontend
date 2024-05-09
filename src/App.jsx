@@ -6,12 +6,11 @@ import Topic from "./Components/Topic/Topic";
 import Article from "./Components/Article/Article";
 
 function App() {
-    const [user, setUser] = useState({});
     return (
         <>
-            <Header user={user} setUser={setUser} />
+            <Header />
             <Routes>
-                <Route path="/" element={<Home user={user} />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/:slug" element={<Topic />} />
                 <Route path="/:slug/:article_id" element={<Article />} />
             </Routes>
