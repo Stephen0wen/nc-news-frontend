@@ -4,6 +4,7 @@ import "./Comments.css";
 import { getComments } from "../../APIs";
 import { useParams } from "react-router-dom";
 import CommentTile from "../CommentTile/CommentTile";
+import CreateComment from "../CreateComment/CreateComment";
 
 const Comments = () => {
     const [comments, setComments] = useState([]);
@@ -17,6 +18,7 @@ const Comments = () => {
 
     return (
         <section id="comments">
+            <CreateComment />
             {comments.map((comment) => {
                 return (
                     <CommentTile key={comment.comment_id} comment={comment} />
