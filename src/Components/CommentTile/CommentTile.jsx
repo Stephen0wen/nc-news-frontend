@@ -8,6 +8,7 @@ import Delete from "../Delete/Delete";
 const CommentTile = ({ comment }) => {
     const [votes, setVotes] = useState("");
     const [isOwnComment, setIsOwnComment] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
     const { user } = useContext(UserContext);
 
     useEffect(() => {
@@ -21,6 +22,10 @@ const CommentTile = ({ comment }) => {
             setIsOwnComment(false);
         }
     }, [user, comment]);
+
+    if (isDeleted) {
+        return;
+    }
 
     if (!isOwnComment) {
         return (
@@ -54,7 +59,10 @@ const CommentTile = ({ comment }) => {
                     <p className="comment-timestamp">
                         {getDateTime(comment.created_at)}
                     </p>
-                    <Delete comment_id={comment.comment_id} />
+                    <Delete
+                        comment_id={comment.comment_id}
+                        setIsDeleted={setIsDeleted}
+                    />
                 </div>
             </div>
         );
