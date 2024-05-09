@@ -4,10 +4,10 @@ import Welcome from "../Welcome/Welcome";
 import "./Home.css";
 import Expand from "../Expand/Expand";
 
-const Home = ({ user }) => {
+const Home = () => {
     return (
         <main id="home">
-            <Welcome user={user} />
+            <Welcome />
             <Topics />
             <Expand expandId="create-topic" label="Start the conversation...">
                 <p>Create a new topic form will go here...</p>

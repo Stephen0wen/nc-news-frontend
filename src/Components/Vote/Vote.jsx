@@ -1,13 +1,19 @@
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 import "./Vote.css";
 import { patchArticle, patchComment } from "../../APIs";
 
 const Vote = ({ votes, setVotes, comment_id }) => {
     const { article_id } = useParams();
+    const { isLoggedIn, setShowLoginPopup } = useContext(UserContext);
 
     const handleClick = () => {
+        if (!isLoggedIn) {
+            setShowLoginPopup(true);
+            return;
+        }
         if (comment_id) {
-            console.log("patch comment");
             setVotes(votes + 1);
             patchComment(comment_id, 1).then((successful) => {
                 if (!successful) {
