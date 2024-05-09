@@ -13,7 +13,7 @@ const CommentTile = ({ comment }) => {
                 <p className="comment-timestamp">
                     {getDateTime(comment.created_at)}
                 </p>
-                <Vote count={comment.votes} />
+                <Vote count={comment.votes} comment_id={comment.comment_id} />
             </div>
         </div>
     );

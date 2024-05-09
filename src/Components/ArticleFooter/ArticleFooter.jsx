@@ -15,7 +15,7 @@ const ArticleFooter = ({ slug, comment_count, votes }) => {
                     expandId="comments-container"
                     label={
                         <>
-                            Comments
+                            <span>Comments</span>
                             <span className="count"> {comment_count}</span>
                         </>
                     }
