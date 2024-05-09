@@ -2,7 +2,6 @@ import { useContext } from "react";
 import "./Login.css";
 
 import { UserContext } from "../../Contexts/UserContext";
-import LoginPopup from "../LoginPopup/LoginPopup";
 
 const Login = () => {
     const { user, isLoggedIn, setShowLoginPopup } = useContext(UserContext);

@@ -15,6 +15,7 @@ const LoginPopup = () => {
             setPopupClasses("flex-center");
         }
         if (!showLoginPopup) {
+            setErrorMsg("");
             setPopupClasses("hidden");
         }
     }, [showLoginPopup]);
