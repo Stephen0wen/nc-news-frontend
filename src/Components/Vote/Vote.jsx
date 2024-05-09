@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "./Vote.css";
-import { patchArticle } from "../../APIs";
+import { patchArticle, patchComment } from "../../APIs";
 
 const Vote = ({ votes, setVotes, comment_id }) => {
     const { article_id } = useParams();
@@ -9,12 +9,15 @@ const Vote = ({ votes, setVotes, comment_id }) => {
         if (comment_id) {
             console.log("patch comment");
             setVotes(votes + 1);
+            patchComment(comment_id, 1).then((successful) => {
+                if (!successful) {
+                    setVotes(votes - 1);
+                }
+            });
         }
         if (!comment_id && article_id) {
-            console.log("patch article");
             setVotes(votes + 1);
             patchArticle(article_id, 1).then((successful) => {
-                console.log(successful);
                 if (!successful) {
                     setVotes(votes - 1);
                 }
