@@ -2,8 +2,9 @@ import "./ArticleFooter.css";
 import { Link } from "react-router-dom";
 import Expand from "../Expand/Expand";
 import Comments from "../Comments/Comments";
+import Vote from "../Vote/Vote";
 
-const ArticleFooter = ({ slug, comment_count }) => {
+const ArticleFooter = ({ slug, comment_count, votes, setVotes }) => {
     return (
         <div id="article-footer">
             <Link to={`/${slug}`}>
@@ -14,15 +15,15 @@ const ArticleFooter = ({ slug, comment_count }) => {
                     expandId="comments-container"
                     label={
                         <>
-                            Comments{" "}
-                            <span id="comment-count">{comment_count}</span>
+                            <span>Comments</span>
+                            <span className="count"> {comment_count}</span>
                         </>
                     }
                 >
                     <Comments />
                 </Expand>
             </div>
-            <button>Vote</button>
+            <Vote votes={votes} setVotes={setVotes} />
         </div>
     );
 };

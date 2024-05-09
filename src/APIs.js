@@ -39,3 +39,27 @@ export const getComments = (article_id) => {
             return comments;
         });
 };
+
+export const patchArticle = (article_id, change) => {
+    const body = { inc_votes: change };
+    return axios
+        .patch(`https://so-news.onrender.com/api/articles/${article_id}`, body)
+        .then(() => {
+            return true;
+        })
+        .catch(() => {
+            return false;
+        });
+};
+
+export const patchComment = (comment_id, change) => {
+    const body = { inc_votes: change };
+    return axios
+        .patch(`https://so-news.onrender.com/api/comments/${comment_id}`, body)
+        .then(() => {
+            return true;
+        })
+        .catch(() => {
+            return false;
+        });
+};
