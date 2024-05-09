@@ -18,7 +18,7 @@ const Comments = () => {
 
     return (
         <section id="comments">
-            <CreateComment />
+            <CreateComment setComments={setComments} />
             {comments.map((comment) => {
                 return (
                     <CommentTile key={comment.comment_id} comment={comment} />
