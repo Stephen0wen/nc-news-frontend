@@ -4,7 +4,7 @@ import Expand from "../Expand/Expand";
 import Comments from "../Comments/Comments";
 import Vote from "../Vote/Vote";
 
-const ArticleFooter = ({ slug, comment_count, votes }) => {
+const ArticleFooter = ({ slug, comment_count, votes, setVotes }) => {
     return (
         <div id="article-footer">
             <Link to={`/${slug}`}>
@@ -23,7 +23,7 @@ const ArticleFooter = ({ slug, comment_count, votes }) => {
                     <Comments />
                 </Expand>
             </div>
-            <Vote count={votes} />
+            <Vote votes={votes} setVotes={setVotes} />
         </div>
     );
 };

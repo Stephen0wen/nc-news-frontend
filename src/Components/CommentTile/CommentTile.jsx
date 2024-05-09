@@ -1,8 +1,15 @@
 import "./CommentTile.css";
 import { getDateTime } from "../../utils";
 import Vote from "../Vote/Vote";
+import { useEffect, useState } from "react";
 
 const CommentTile = ({ comment }) => {
+    const [votes, setVotes] = useState("");
+
+    useEffect(() => {
+        setVotes(comment.votes);
+    }, []);
+
     return (
         <div className="comment-tile">
             <p className="comment-body">
@@ -13,7 +20,11 @@ const CommentTile = ({ comment }) => {
                 <p className="comment-timestamp">
                     {getDateTime(comment.created_at)}
                 </p>
-                <Vote count={comment.votes} comment_id={comment.comment_id} />
+                <Vote
+                    votes={votes}
+                    setVotes={setVotes}
+                    comment_id={comment.comment_id}
+                />
             </div>
         </div>
     );

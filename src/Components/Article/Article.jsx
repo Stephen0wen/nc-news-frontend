@@ -8,12 +8,17 @@ const Article = () => {
     const { article_id, slug } = useParams();
 
     const [article, setArticle] = useState({});
+    const [votes, setVotes] = useState("");
 
     useEffect(() => {
         getArticle(article_id).then((apiArticle) => {
             setArticle(apiArticle);
         });
     }, []);
+
+    useEffect(() => {
+        setVotes(article.votes);
+    }, [article]);
 
     return (
         <>
@@ -28,7 +33,8 @@ const Article = () => {
             <ArticleFooter
                 slug={slug}
                 comment_count={article.comment_count}
-                votes={article.votes}
+                votes={votes}
+                setVotes={setVotes}
             />
         </>
     );
