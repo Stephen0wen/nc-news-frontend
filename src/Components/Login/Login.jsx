@@ -1,71 +1,27 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./Login.css";
 import { getUser } from "../../APIs";
 import { UserContext } from "../../Contexts/UserContext";
+import LoginPopup from "../LoginPopup/LoginPopup";
 
 const Login = () => {
-    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
-
-    const [popupClasses, setPopupClasses] = useState("hidden");
-    const [errorMsg, setErrorMsg] = useState("");
+    const { user, isLoggedIn, setShowLoginPopup } = useContext(UserContext);
 
     const handleClick = () => {
-        setPopupClasses("flex-center");
+        setShowLoginPopup(true);
     };
 
-    const handleClose = () => {
-        setPopupClasses("hidden");
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const enteredUser = event.target[1].value;
-        if (enteredUser === "") {
-            setErrorMsg("Enter username...");
-            return;
-        }
-        getUser(enteredUser)
-            .then((apiUser) => {
-                setUser(apiUser);
-                setIsLoggedIn(true);
-            })
-            .catch(() => {
-                setErrorMsg("User not found...");
-            });
-    };
-
-    if (!Object.keys(user).length) {
+    if (!isLoggedIn) {
         return (
             <>
                 <button id="login" onClick={handleClick}>
                     Login
                 </button>
-                <div id="login-popup" className={popupClasses}>
-                    <form onSubmit={handleSubmit}>
-                        <button
-                            type="button"
-                            id="login-close"
-                            onClick={handleClose}
-                        >
-                            X
-                        </button>
-                        <div id="signin-fields">
-                            <label>
-                                Username
-                                <input
-                                    id="username"
-                                    autoComplete="username"
-                                ></input>
-                                <p>{errorMsg}</p>
-                            </label>
-                            <button type="submit">Sign In</button>
-                        </div>
-                    </form>
-                </div>
+                <LoginPopup />
             </>
         );
     }
-    if (Object.keys(user).length) {
+    if (isLoggedIn) {
         return (
             <div id="user-display">
                 <h2>{user.name}</h2>
