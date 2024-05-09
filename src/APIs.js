@@ -63,3 +63,18 @@ export const patchComment = (comment_id, change) => {
             return false;
         });
 };
+
+export const postComment = (article_id, requestBody) => {
+    return axios
+        .post(
+            `https://so-news.onrender.com/api/articles/${article_id}/comments`,
+            requestBody
+        )
+        .then(({ data: { comment } }) => {
+            return comment;
+        })
+
+        .catch((error) => {
+            return error;
+        });
+};
