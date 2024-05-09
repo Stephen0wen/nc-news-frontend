@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Login.css";
-import { getUser } from "../../APIs";
+
 import { UserContext } from "../../Contexts/UserContext";
 import LoginPopup from "../LoginPopup/LoginPopup";
 
@@ -13,12 +13,9 @@ const Login = () => {
 
     if (!isLoggedIn) {
         return (
-            <>
-                <button id="login" onClick={handleClick}>
-                    Login
-                </button>
-                <LoginPopup />
-            </>
+            <button id="login" onClick={handleClick}>
+                Login
+            </button>
         );
     }
     if (isLoggedIn) {
