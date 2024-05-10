@@ -14,7 +14,12 @@ const ErrorDisplay = ({ notFound }) => {
         }
     };
 
+    console.log(error);
     let message = "An error occured";
+
+    if (notFound) {
+        message = "404 - Page not found.";
+    }
 
     if (error.code && error.code === "ERR_NETWORK") {
         message = "Unable to connect to server...";
@@ -22,11 +27,12 @@ const ErrorDisplay = ({ notFound }) => {
 
     if (error.msg) {
         message = error.msg;
+        notFound = true;
     }
 
-    if (notFound) {
-        message = "404 - Page not found.";
-    }
+    // if (error.response.data.msg) {
+    //     message = error.response.data.msg;
+    // }
 
     return (
         <div id="error-display">
