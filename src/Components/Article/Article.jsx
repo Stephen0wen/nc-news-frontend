@@ -3,6 +3,7 @@ import "./Article.css";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../../APIs";
 import ArticleFooter from "../ArticleFooter/ArticleFooter";
+import { getDateTime } from "../../utils";
 
 const Article = () => {
     const { article_id, slug } = useParams();
@@ -30,6 +31,9 @@ const Article = () => {
                 <p>
                     <img src={article.article_img_url} />
                     {article.body}
+                </p>
+                <p className="article-timestamp">
+                    {getDateTime(article.created_at)}
                 </p>
             </article>
             <ArticleFooter

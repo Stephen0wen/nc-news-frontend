@@ -30,6 +30,12 @@
     float: right;
 }
 
+.article-timestamp {
+    color: #aaaa;
+    width: max-content;
+    float: right;
+}
+
 @media (max-width: 600px) {
     #article img {
         width: 100%;

@@ -26,26 +26,26 @@ const SortArticles = () => {
                                     id="sort-recent"
                                     type="radio"
                                     name="sort-by"
-                                    value="recent"
+                                    value="created_at"
                                     defaultChecked
                                 ></input>
                             </label>
-                            <label htmlFor="sort-title">
-                                Title{" "}
+                            <label htmlFor="sort-votes">
+                                Votes{" "}
                                 <input
-                                    id="sort-title"
+                                    id="sort-votes"
                                     type="radio"
                                     name="sort-by"
-                                    value="title"
+                                    value="votes"
                                 ></input>
                             </label>
-                            <label htmlFor="sort-author">
-                                Author{" "}
+                            <label htmlFor="sort-comments">
+                                Comments{" "}
                                 <input
-                                    id="sort-author"
+                                    id="sort-comments"
                                     type="radio"
                                     name="sort-by"
-                                    value="author"
+                                    value="comment_count"
                                 ></input>
                             </label>
                         </fieldset>
@@ -53,16 +53,6 @@ const SortArticles = () => {
                     <div>
                         <h2>Order:</h2>
                         <fieldset id="order">
-                            <label htmlFor="order-asc">
-                                Ascending{" "}
-                                <input
-                                    id="order-asc"
-                                    type="radio"
-                                    name="order"
-                                    value="asc"
-                                    defaultChecked
-                                ></input>
-                            </label>
                             <label htmlFor="order-desc">
                                 Descending{" "}
                                 <input
@@ -70,6 +60,16 @@ const SortArticles = () => {
                                     type="radio"
                                     name="order"
                                     value="desc"
+                                    defaultChecked
+                                ></input>
+                            </label>
+                            <label htmlFor="order-asc">
+                                Ascending{" "}
+                                <input
+                                    id="order-asc"
+                                    type="radio"
+                                    name="order"
+                                    value="asc"
                                 ></input>
                             </label>
                         </fieldset>
