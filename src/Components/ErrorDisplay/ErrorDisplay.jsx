@@ -11,13 +11,19 @@ const ErrorDisplay = ({ notFound }) => {
         setError(false);
         if (notFound) {
             navigate("/");
+        } else {
+            navigate(-1);
         }
     };
 
     let message = "An error occured";
 
-    if (error) {
+    if (error.code && error.code === "ERR_NETWORK") {
         message = "Unable to connect to server...";
+    }
+
+    if (error.msg) {
+        message = error.msg;
     }
 
     if (notFound) {

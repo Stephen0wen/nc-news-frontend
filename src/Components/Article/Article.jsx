@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Article.css";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../../APIs";
 import ArticleFooter from "../ArticleFooter/ArticleFooter";
 import { getDateTime } from "../../utils";
+import { ErrorContext } from "../../Contexts/ErrorContext";
 
 const Article = () => {
     const { article_id, slug } = useParams();
 
     const [article, setArticle] = useState({});
     const [votes, setVotes] = useState("");
+    const { setError } = useContext(ErrorContext);
 
     useEffect(() => {
-        getArticle(article_id).then((apiArticle) => {
-            setArticle(apiArticle);
-        });
+        getArticle(article_id)
+            .then((apiArticle) => {
+                setArticle(apiArticle);
+            })
+            .catch((apiError) => {
+                setError(apiError.response.data);
+            });
     }, []);
 
     useEffect(() => {

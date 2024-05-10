@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext";
+import { ErrorContext } from "../../Contexts/ErrorContext";
 import "./CreateComment.css";
 import CommentTile from "../CommentTile/CommentTile";
 import { postComment, getComments } from "../../APIs";
@@ -8,6 +9,7 @@ import { postComment, getComments } from "../../APIs";
 const CreateComment = ({ setComments }) => {
     const { article_id } = useParams();
     const { user, isLoggedIn, setShowLoginPopup } = useContext(UserContext);
+    const { setError } = useContext(ErrorContext);
     const [pending, setPending] = useState(false);
     const [newComment, setNewComment] = useState(null);
 
@@ -44,6 +46,9 @@ const CreateComment = ({ setComments }) => {
             .then((apiComments) => {
                 setComments(apiComments);
                 setNewComment(null);
+            })
+            .catch((apiError) => {
+                setError(apiError);
             });
     };
 

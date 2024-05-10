@@ -72,10 +72,6 @@ export const postComment = (article_id, requestBody) => {
         )
         .then(({ data: { comment } }) => {
             return comment;
-        })
-
-        .catch((error) => {
-            return error;
         });
 };
 
