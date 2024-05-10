@@ -7,7 +7,6 @@ const Logo = () => {
     const { setError } = useContext(ErrorContext);
 
     const handleClick = () => {
-        console.log("Hello");
         setError(false);
     };
 

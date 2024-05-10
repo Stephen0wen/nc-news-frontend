@@ -26,6 +26,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/:slug" element={<Topic />} />
                 <Route path="/:slug/:article_id" element={<Article />} />
+                <Route path="*" element={<ErrorDisplay notFound={true} />} />
             </Routes>
             <Header />
             <LoginPopup />
