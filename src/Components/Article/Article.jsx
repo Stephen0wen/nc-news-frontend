@@ -24,7 +24,9 @@ const Article = () => {
         <>
             <article id="article">
                 <h1>{article.title}</h1>
-                <h2>By {article.author}</h2>
+                <h2>
+                    By {article.author} <span> - {votes} Votes</span>
+                </h2>
                 <p>
                     <img src={article.article_img_url} />
                     {article.body}
@@ -35,6 +37,7 @@ const Article = () => {
                 comment_count={article.comment_count}
                 votes={votes}
                 setVotes={setVotes}
+                author={article.author}
             />
         </>
     );
