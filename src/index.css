@@ -17,7 +17,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    font-size: clamp(16px, min(2vw, 2vh), 24px);
+    font-size: clamp(16px, min(2vw, 2vh), 20px);
 }
 
 *,
@@ -64,6 +64,10 @@ a:hover p {
     text-shadow: none;
 }
 
+section > * {
+    max-width: 1000px;
+}
+
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -88,7 +92,7 @@ button:focus-visible {
         --background-colour: #ffe;
         --primary-colour: #213547;
         --secondary-colour: #999;
-        --danger-colour: #f33;
+        --danger-colour: #d44d;
     }
     a:hover {
         color: #005;
