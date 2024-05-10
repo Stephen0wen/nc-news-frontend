@@ -72,10 +72,6 @@ export const postComment = (article_id, requestBody) => {
         )
         .then(({ data: { comment } }) => {
             return comment;
-        })
-
-        .catch((error) => {
-            return error;
         });
 };
 
@@ -86,9 +82,7 @@ export const deleteComment = (comment_id) => {
 };
 
 export const deleteArticle = (article_id) => {
-    return axios
-        .delete(`https://so-news.onrender.com/api/articles/${article_id}`)
-        .then(() => {
-            console.log("Successful");
-        });
+    return axios.delete(
+        `https://so-news.onrender.com/api/articles/${article_id}`
+    );
 };

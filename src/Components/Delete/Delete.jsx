@@ -9,7 +9,6 @@ const Delete = ({ comment_id, setIsDeleted }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log("Hello");
         setIsDisabled(true);
         if (comment_id) {
             deleteComment(comment_id).then(() => {
@@ -17,7 +16,6 @@ const Delete = ({ comment_id, setIsDeleted }) => {
             });
         }
         if (!comment_id && article_id) {
-            console.log("Delete article");
             deleteArticle(article_id).then(() => {
                 navigate(`/${slug}`);
             });
