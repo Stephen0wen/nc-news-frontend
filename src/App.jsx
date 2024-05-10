@@ -4,8 +4,22 @@ import Header from "./Components/Header/Header";
 import Topic from "./Components/Topic/Topic";
 import Article from "./Components/Article/Article";
 import LoginPopup from "./Components/LoginPopup/LoginPopup";
+import { useContext } from "react";
+import { ErrorContext } from "./Contexts/ErrorContext";
+import ErrorDisplay from "./Components/ErrorDisplay/ErrorDisplay";
 
 function App() {
+    const { error } = useContext(ErrorContext);
+
+    if (error) {
+        return (
+            <>
+                <ErrorDisplay />
+                <Header />
+            </>
+        );
+    }
+
     return (
         <>
             <Routes>
