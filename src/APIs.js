@@ -82,9 +82,7 @@ export const deleteComment = (comment_id) => {
 };
 
 export const deleteArticle = (article_id) => {
-    return axios
-        .delete(`https://so-news.onrender.com/api/articles/${article_id}`)
-        .then(() => {
-            console.log("Successful");
-        });
+    return axios.delete(
+        `https://so-news.onrender.com/api/articles/${article_id}`
+    );
 };
