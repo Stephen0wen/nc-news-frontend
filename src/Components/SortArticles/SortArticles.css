@@ -1,0 +1,36 @@
+#sort-form {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
+#sort-form div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sort-form fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    align-items: center;
+    border: none;
+    margin: 0 2rem;
+    height: 100%;
+}
+
+#sort-form h2 {
+    font-size: 1.2rem;
+}
+
+#sort-form fieldset label {
+    width: 100%;
+    text-align: right;
+    font-size: 1rem;
+}
