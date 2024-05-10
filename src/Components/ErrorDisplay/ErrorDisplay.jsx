@@ -11,8 +11,6 @@ const ErrorDisplay = ({ notFound }) => {
         setError(false);
         if (notFound) {
             navigate("/");
-        } else {
-            navigate(-1);
         }
     };
 

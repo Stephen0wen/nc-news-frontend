@@ -37,8 +37,14 @@ const LoginPopup = () => {
                 setIsLoggedIn(true);
                 setShowLoginPopup(false);
             })
-            .catch(() => {
-                setErrorMsg("User not found...");
+            .catch((error) => {
+                console.log(error.message);
+                if (error.message) {
+                    setErrorMsg(error.message);
+                }
+                if (error.response.data.msg) {
+                    setErrorMsg(error.response.data.msg);
+                }
             });
     };
 
