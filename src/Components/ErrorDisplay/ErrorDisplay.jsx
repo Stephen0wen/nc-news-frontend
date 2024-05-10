@@ -11,6 +11,8 @@ const ErrorDisplay = ({ notFound }) => {
         setError(false);
         if (notFound) {
             navigate("/");
+        } else {
+            navigate(-1);
         }
     };
 
@@ -19,6 +21,10 @@ const ErrorDisplay = ({ notFound }) => {
 
     if (notFound) {
         message = "404 - Page not found.";
+    }
+
+    if (error.message) {
+        message = error.message;
     }
 
     if (error.code && error.code === "ERR_NETWORK") {

@@ -11,8 +11,8 @@ const Logo = () => {
     };
 
     return (
-        <Link to="/" onClick={handleClick}>
-            NC-News
+        <Link id="logo" to="/" onClick={handleClick}>
+            SO-NEWS
         </Link>
     );
 };

@@ -15,7 +15,7 @@
 
 #article h2 {
     font-size: 1.2rem;
-    color: #aaaa;
+    color: var(--secondary-colour);
 }
 
 #article-votes {
@@ -35,7 +35,7 @@
 }
 
 .article-timestamp {
-    color: #aaaa;
+    color: var(--secondary-colour);
     width: max-content;
     float: right;
 }

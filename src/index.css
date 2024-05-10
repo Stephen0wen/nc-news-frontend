@@ -1,16 +1,23 @@
 :root {
+    --background-colour: #242424;
+    --primary-colour: rgba(255, 255, 255, 0.87);
+    --secondary-colour: #777;
+    --danger-colour: #300;
+
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color: var(--primary-colour);
+    background-color: var(--background-colour);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    font-size: clamp(16px, min(2vw, 2vh), 20px);
 }
 
 *,
@@ -40,7 +47,25 @@
 }
 
 .count {
-    color: #aaaa;
+    color: var(--secondary-colour);
+}
+
+a {
+    color: var(--primary-colour);
+}
+
+a:hover {
+    color: var(--primary-colour);
+    text-shadow: 0 0 0.5rem var(--secondary-colour);
+}
+
+a:hover p {
+    color: var(--primary-colour);
+    text-shadow: none;
+}
+
+section > * {
+    max-width: 1000px;
 }
 
 button {
@@ -64,13 +89,15 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
     :root {
-        color: #213547;
-        background-color: #ffffff;
+        --background-colour: #ffe;
+        --primary-colour: #213547;
+        --secondary-colour: #999;
+        --danger-colour: #d44d;
     }
     a:hover {
-        color: #747bff;
+        color: #005;
     }
     button {
-        background-color: #f9f9f9;
+        background-color: #ddf;
     }
 }
