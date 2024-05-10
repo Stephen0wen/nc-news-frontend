@@ -6,15 +6,15 @@
     top: 0;
     left: 0;
     z-index: 1;
-    background-color: #000c;
+    background-color: #000a;
 }
 
 #login-popup > form {
     opacity: 1;
-    border: 1px solid white;
+    border: 1px solid var(--primary-colour);
     width: 18rem;
     height: 15rem;
-    background-color: #000;
+    background-color: var(--background-colour);
     border-radius: 0.5rem;
 }
 
@@ -36,7 +36,7 @@
 
 #login-popup p {
     height: 1rem;
-    color: #f44;
+    color: var(--danger-colour);
 }
 
 #login-close {

@@ -1,9 +1,8 @@
 #comments {
-    border-top: 1px solid white;
+    border-top: 1px solid var(--primary-colour);
     position: absolute;
     left: 0;
     text-align: center;
     width: 100vw;
-    max-width: 1000px;
     padding-bottom: 1rem;
 }
