@@ -4,6 +4,7 @@ import "./Articles.css";
 import { getArticles } from "../../APIs";
 import ArticleTile from "../ArticleTile/ArticleTile";
 import { ErrorContext } from "../../Contexts/ErrorContext";
+import LoadMsg from "../LoadMsg/LoadMsg";
 
 const Articles = ({ slug }) => {
     const [articles, setArticles] = useState([]);
@@ -29,11 +30,7 @@ const Articles = ({ slug }) => {
     }, [searchParams]);
 
     if (isLoading) {
-        return (
-            <section id="articles" className="flex-center">
-                <h3>Articles are loading...</h3>
-            </section>
-        );
+        return <LoadMsg message="Loading Articles..." />;
     }
 
     return (

@@ -3,6 +3,7 @@ import { getTopics } from "../../APIs";
 import "./Topics.css";
 import TopicTile from "../TopicTile/TopicTile";
 import { ErrorContext } from "../../Contexts/ErrorContext";
+import LoadMsg from "../LoadMsg/LoadMsg";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -24,11 +25,7 @@ const Topics = () => {
     }, []);
 
     if (isLoading) {
-        return (
-            <section id="topics" className="flex-center">
-                <h3>Topics are loading...</h3>
-            </section>
-        );
+        return <LoadMsg message="Loading Topics..." />;
     }
 
     return (

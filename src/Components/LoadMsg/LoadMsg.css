@@ -1,0 +1,11 @@
+#load-message-container {
+    margin: 2rem;
+}
+
+#load-message {
+    text-align: center;
+}
+
+#load-message-small {
+    text-align: center;
+}
