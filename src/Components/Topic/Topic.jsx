@@ -8,8 +8,6 @@ import SortArticles from "../SortArticles/SortArticles";
 const Topic = () => {
     const { slug } = useParams();
 
-    const queries = { params: { topic: slug } };
-
     return (
         <main id="topic" className="flex-center">
             <h1 className="topic-title">{slug}</h1>

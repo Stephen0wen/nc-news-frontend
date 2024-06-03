@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./TopicFooter.css";
 
 const TopicFooter = () => {
+    const { slug } = useParams();
+
     return (
         <footer id="topic-footer" className="flex-center">
             <button>Previous</button>
-            <Link>
+            <Link to={`/create/${slug}`}>
                 <button>Create</button>
             </Link>
             <button>Next</button>

@@ -1,0 +1,43 @@
+#new-article {
+    flex-direction: column;
+}
+
+#new-article h2 {
+    margin: 1rem;
+}
+
+#new-article form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 50vh;
+    width: 90vw;
+    max-width: 1000px;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+#new-article input,
+#new-article textarea {
+    display: block;
+    width: 100%;
+    margin: 0.2rem 0;
+}
+
+#new-article textarea {
+    height: 30vh;
+}
+
+#new-article-image {
+    display: inline;
+}
+
+#new-article-image-label {
+    display: inline;
+}
+
+#new-article button {
+    width: 5rem;
+    height: 5rem;
+    align-self: center;
+}
