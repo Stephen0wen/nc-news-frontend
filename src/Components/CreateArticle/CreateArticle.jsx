@@ -1,26 +1,33 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./CreateArticle.css";
 
 const CreateArticle = () => {
     const { slug } = useParams();
+
+    const handleSubmit = () => {};
 
     return (
         <section id="new-article" className="flex-center">
             <h2>{slug} - Create a New Article</h2>
             <form>
                 <label>
-                    Article Title
-                    <input id="new-article-title"></input>
+                    <p>Article Title</p>
+                    <input id="new-article-title" />
                 </label>
                 <label>
-                    Article Body
-                    <textarea id="new-article-body"></textarea>
+                    <p>Article Body</p>
+                    <textarea id="new-article-body" />
                 </label>
                 <label id="-new-article-image-label">
-                    Select Image File
-                    <input id="new-article-image" type="file"></input>
+                    <p>Select Image File</p>
+                    <input id="new-article-image" type="file" />
                 </label>
-                <button type="submit">Post</button>
+                <div id="button-container">
+                    <button type="submit">Post</button>
+                    <Link to={`/${slug}`}>
+                        <button type="submit">Cancel</button>
+                    </Link>
+                </div>
             </form>
         </section>
     );

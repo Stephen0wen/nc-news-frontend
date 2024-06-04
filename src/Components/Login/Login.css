@@ -10,8 +10,10 @@
 }
 
 #avatar {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
+    padding: 0.2rem;
     margin-left: 0.5rem;
     border-radius: 1.25rem;
+    box-shadow: 0 0 5px grey;
 }
