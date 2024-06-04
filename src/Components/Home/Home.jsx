@@ -9,9 +9,6 @@ const Home = () => {
         <main id="home">
             <Welcome />
             <Topics />
-            <Expand expandId="create-topic" label="Start the conversation...">
-                <p>Create a new topic form will go here...</p>
-            </Expand>
         </main>
     );
 };

@@ -4,6 +4,7 @@ import "./Topics.css";
 import TopicTile from "../TopicTile/TopicTile";
 import { ErrorContext } from "../../Contexts/ErrorContext";
 import LoadMsg from "../LoadMsg/LoadMsg";
+import Expand from "../Expand/Expand";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -29,11 +30,16 @@ const Topics = () => {
     }
 
     return (
-        <section id="topics" className="flex-center">
-            {topics.map((topic) => {
-                return <TopicTile key={topic.slug} topic={topic} />;
-            })}
-        </section>
+        <>
+            <section id="topics" className="flex-center">
+                {topics.map((topic) => {
+                    return <TopicTile key={topic.slug} topic={topic} />;
+                })}
+            </section>
+            <Expand expandId="create-topic" label="Start the conversation...">
+                <p>Create a new topic form will go here...</p>
+            </Expand>
+        </>
     );
 };
 
