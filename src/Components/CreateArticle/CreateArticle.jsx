@@ -59,7 +59,6 @@ const CreateArticle = () => {
             topic: slug,
             article_img_url: imgUrl,
         };
-        console.log(requestBody);
         postArticle(requestBody)
             .then(({ article_id }) => {
                 navigate(`/topics/${slug}/${article_id}`);
