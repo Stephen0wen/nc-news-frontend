@@ -1,12 +1,14 @@
-import { useParams, Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext";
+import { postArticle } from "../../APIs";
 import "./CreateArticle.css";
 
 const CreateArticle = () => {
     const { slug } = useParams();
+    const { user, isLoggedIn } = useContext(UserContext);
+    const navigate = useNavigate();
 
-    const { user } = useContext(UserContext);
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [imgUrl, setImgUrl] = useState("");
@@ -16,11 +18,18 @@ const CreateArticle = () => {
         imgUrl: "",
     });
 
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate(`/topics/${slug}`);
+        }
+    });
+
     const updateTitle = ({ target: { value } }) => {
         setWarnings({
             ...warnings,
             title: value ? "" : "Please create a title.",
         });
+        setTitle(value);
     };
 
     const updateBody = ({ target: { value } }) => {
@@ -28,13 +37,36 @@ const CreateArticle = () => {
             ...warnings,
             body: value ? "" : "Please write an article body.",
         });
+        setBody(value);
     };
 
-    const updateImgUrl = ({ target: { value } }) => {
+    const updateImgUrl = ({ target: { files } }) => {
         setWarnings({
             ...warnings,
-            imgUrl: value ? "" : "Please select an image.",
+            imgUrl: files ? "" : "Please select an image.",
         });
+        if (files[0]) {
+            const imgUrl = URL.createObjectURL(files[0]);
+            setImgUrl(imgUrl);
+        }
+    };
+
+    const handlePost = () => {
+        const requestBody = {
+            author: user.username,
+            title,
+            body,
+            topic: slug,
+            article_img_url: imgUrl,
+        };
+        console.log(requestBody);
+        postArticle(requestBody)
+            .then(({ article_id }) => {
+                navigate(`/topics/${slug}/${article_id}`);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -66,11 +98,14 @@ const CreateArticle = () => {
                         type="file"
                         onChange={updateImgUrl}
                         onBlur={updateImgUrl}
+                        accept="image/png, image/jpeg"
                     />
                     <p>{warnings.imgUrl}</p>
                 </label>
                 <div id="button-container">
-                    <button type="submit">Post</button>
+                    <button type="button" onClick={handlePost}>
+                        Post
+                    </button>
                     <Link to={`/topics/${slug}`}>
                         <button type="button">Cancel</button>
                     </Link>

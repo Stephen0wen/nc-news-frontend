@@ -17,7 +17,7 @@ const Delete = ({ comment_id, setIsDeleted }) => {
         }
         if (!comment_id && article_id) {
             deleteArticle(article_id).then(() => {
-                navigate(`/${slug}`);
+                navigate(`/topics/${slug}`);
             });
         }
     };

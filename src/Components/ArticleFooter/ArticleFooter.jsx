@@ -47,7 +47,7 @@ const ArticleFooter = ({ slug, comment_count, votes, setVotes, author }) => {
     if (isOwnArticle) {
         return (
             <div id="article-footer">
-                <Link to={`/${slug}`}>
+                <Link to={`/topics/${slug}`}>
                     <button>{slug}</button>
                 </Link>
                 <div>
