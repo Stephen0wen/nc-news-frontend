@@ -15,7 +15,7 @@ const TopicFooter = () => {
     let create;
     if (isLoggedIn) {
         create = (
-            <Link to={`/create/${slug}`}>
+            <Link to={`/create/article/${slug}`}>
                 <button>Create</button>
             </Link>
         );

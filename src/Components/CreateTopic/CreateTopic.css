@@ -40,6 +40,10 @@
     padding: 0.2rem;
 }
 
+#new-topic textarea {
+    height: 20vh;
+}
+
 #button-container {
     width: 100%;
     display: flex;

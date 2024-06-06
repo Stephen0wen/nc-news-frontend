@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { ErrorContext } from "./Contexts/ErrorContext";
 import ErrorDisplay from "./Components/ErrorDisplay/ErrorDisplay";
 import CreateArticle from "./Components/CreateArticle/CreateArticle";
+import CreateTopic from "./Components/CreateTopic/CreateTopic";
 
 function App() {
     const { error } = useContext(ErrorContext);
@@ -27,7 +28,11 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/topics/:slug" element={<Topic />} />
                 <Route path="/topics/:slug/:article_id" element={<Article />} />
-                <Route path="/create/:slug" element={<CreateArticle />} />
+                <Route
+                    path="/create/article/:slug"
+                    element={<CreateArticle />}
+                />
+                <Route path="create/topic" element={<CreateTopic />} />
                 <Route path="*" element={<ErrorDisplay notFound={true} />} />
             </Routes>
             <Header />

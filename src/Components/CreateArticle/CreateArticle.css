@@ -43,8 +43,8 @@
     padding: 0.2rem;
 }
 
-#new-topic textarea {
-    height: 3rem;
+#new-article textarea {
+    height: 35vh;
 }
 
 #new-article-image {

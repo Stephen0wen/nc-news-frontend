@@ -1,9 +1,12 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../Contexts/UserContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import "./CreateTopic.css";
+import { postTopic } from "../../APIs";
 
 const CreateTopic = () => {
+    const navigate = useNavigate();
+
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
     const [warnings, setWarnings] = useState({
@@ -29,21 +32,15 @@ const CreateTopic = () => {
         setDescription(value);
     };
 
-    const handleCancel = () => {
-        setWarnings({
-            slug: "",
-            description: "",
-        });
-        setSlug("");
-        setDescription("");
-    };
-
     const handleCreate = () => {
         const requestBody = {
             slug,
             description,
         };
         console.log(requestBody);
+        postTopic(requestBody).then(({ slug }) => {
+            navigate(`/topics/${slug}`);
+        });
     };
 
     return (
@@ -72,9 +69,9 @@ const CreateTopic = () => {
                     <button type="button" onClick={handleCreate}>
                         Create
                     </button>
-                    <button type="button" onClick={handleCancel}>
-                        Cancel
-                    </button>
+                    <Link to="/">
+                        <button type="button">Cancel</button>
+                    </Link>
                 </div>
             </form>
         </section>
