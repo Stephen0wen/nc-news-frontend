@@ -5,6 +5,7 @@ import { getArticle } from "../../APIs";
 import ArticleFooter from "../ArticleFooter/ArticleFooter";
 import { getDateTime } from "../../utils";
 import { ErrorContext } from "../../Contexts/ErrorContext";
+import LoadMsg from "../LoadMsg/LoadMsg";
 
 const Article = () => {
     const { article_id, slug } = useParams();
@@ -33,11 +34,7 @@ const Article = () => {
     }, [article]);
 
     if (isLoading) {
-        return (
-            <div id="article-loading" className="flex-center">
-                <h3>Article is loading...</h3>
-            </div>
-        );
+        return <LoadMsg message="Loading Article..." />;
     }
 
     return (

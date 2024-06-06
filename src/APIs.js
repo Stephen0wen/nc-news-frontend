@@ -81,6 +81,14 @@ export const deleteComment = (comment_id) => {
     );
 };
 
+export const postArticle = (requestBody) => {
+    return axios
+        .post(`https://so-news.onrender.com/api/articles`, requestBody)
+        .then(({ data: { article } }) => {
+            return article;
+        });
+};
+
 export const deleteArticle = (article_id) => {
     return axios.delete(
         `https://so-news.onrender.com/api/articles/${article_id}`

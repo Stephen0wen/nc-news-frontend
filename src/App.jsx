@@ -25,8 +25,8 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/:slug" element={<Topic />} />
-                <Route path="/:slug/:article_id" element={<Article />} />
+                <Route path="/topics/:slug" element={<Topic />} />
+                <Route path="/topics/:slug/:article_id" element={<Article />} />
                 <Route path="/create/:slug" element={<CreateArticle />} />
                 <Route path="*" element={<ErrorDisplay notFound={true} />} />
             </Routes>
