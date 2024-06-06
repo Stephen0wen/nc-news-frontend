@@ -1,17 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 import "./CreateTopic.css";
 import { postTopic } from "../../APIs";
 
 const CreateTopic = () => {
     const navigate = useNavigate();
+    const { isLoggedIn, setShowLoginPopup } = useContext(UserContext);
 
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
     const [warnings, setWarnings] = useState({
         slug: "",
         description: "",
+    });
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            setShowLoginPopup(true);
+            navigate("/");
+        }
     });
 
     const updateTopicName = ({ target: { value } }) => {
@@ -37,9 +45,8 @@ const CreateTopic = () => {
             slug,
             description,
         };
-        console.log(requestBody);
         postTopic(requestBody).then(({ slug }) => {
-            navigate(`/topics/${slug}`);
+            navigate(`/create/article/${slug}`);
         });
     };
 
