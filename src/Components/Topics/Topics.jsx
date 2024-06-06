@@ -18,7 +18,7 @@ const Topics = () => {
                 setTopics(apiTopics);
             })
             .then(() => {
-                // setIsLoading(false);
+                setIsLoading(false);
             })
             .catch((apiError) => {
                 setError(apiError);
