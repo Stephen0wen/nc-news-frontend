@@ -4,7 +4,7 @@ import "./ArticleTile.css";
 const ArticleTile = ({ article }) => {
     return (
         <Link
-            to={`/${article.topic}/${article.article_id}`}
+            to={`/topics/${article.topic}/${article.article_id}`}
             className="article-tile"
         >
             <h2>{article.title}</h2>

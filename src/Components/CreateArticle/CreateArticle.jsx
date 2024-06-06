@@ -71,7 +71,7 @@ const CreateArticle = () => {
                 </label>
                 <div id="button-container">
                     <button type="submit">Post</button>
-                    <Link to={`/${slug}`}>
+                    <Link to={`/topics/${slug}`}>
                         <button type="button">Cancel</button>
                     </Link>
                 </div>
