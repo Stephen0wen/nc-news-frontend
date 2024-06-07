@@ -1,7 +1,7 @@
 import "./Topic.css";
 import { useParams } from "react-router-dom";
 import Articles from "../Articles/Articles";
-import TopicFooter from "../TopicFooter/TopicFooter";
+import CreateArticleFAB from "../CreateArticleFAB/CreateArticleFAB";
 
 const Topic = () => {
     const { slug } = useParams();
@@ -10,7 +10,7 @@ const Topic = () => {
         <main id="topic" className="flex-center">
             <h1 className="topic-title">{slug}</h1>
             <Articles slug={slug} />
-            <TopicFooter />
+            <CreateArticleFAB />
         </main>
     );
 };
