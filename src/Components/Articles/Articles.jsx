@@ -6,6 +6,8 @@ import ArticleTile from "../ArticleTile/ArticleTile";
 import { ErrorContext } from "../../Contexts/ErrorContext";
 import { UserContext } from "../../Contexts/UserContext";
 import LoadMsg from "../LoadMsg/LoadMsg";
+import Expand from "../Expand/Expand";
+import SortArticles from "../SortArticles/SortArticles";
 
 const Articles = ({ slug }) => {
     const [articles, setArticles] = useState([]);
@@ -56,6 +58,13 @@ const Articles = ({ slug }) => {
 
     return (
         <section id="articles" className="flex-center">
+            {articles.length > 1 ? (
+                <Expand expandId="sort" label="sort">
+                    <SortArticles />
+                </Expand>
+            ) : (
+                <></>
+            )}
             {articles.map((article) => {
                 return (
                     <ArticleTile key={article.article_id} article={article} />
