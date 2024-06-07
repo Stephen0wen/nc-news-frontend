@@ -4,7 +4,7 @@ import "./Topics.css";
 import TopicTile from "../TopicTile/TopicTile";
 import { ErrorContext } from "../../Contexts/ErrorContext";
 import LoadMsg from "../LoadMsg/LoadMsg";
-import Expand from "../Expand/Expand";
+import { Link } from "react-router-dom";
 
 const Topics = () => {
     const [topics, setTopics] = useState([]);
@@ -36,9 +36,9 @@ const Topics = () => {
                     return <TopicTile key={topic.slug} topic={topic} />;
                 })}
             </section>
-            <Expand expandId="create-topic" label="Start the conversation...">
-                <p>Create a new topic form will go here...</p>
-            </Expand>
+            <Link to="/create/topic">
+                <button>Start the conversation</button>
+            </Link>
         </>
     );
 };

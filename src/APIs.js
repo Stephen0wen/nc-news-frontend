@@ -94,3 +94,15 @@ export const deleteArticle = (article_id) => {
         `https://so-news.onrender.com/api/articles/${article_id}`
     );
 };
+
+export const postTopic = (requestBody) => {
+    return axios
+        .post(`https://so-news.onrender.com/api/topics`, requestBody)
+        .then(({ data: { topic } }) => {
+            return topic;
+        });
+};
+
+export const deleteTopic = (slug) => {
+    return axios.delete(`https://so-news.onrender.com/api/topics/${slug}`);
+};
