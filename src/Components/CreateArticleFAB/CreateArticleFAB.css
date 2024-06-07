@@ -1,0 +1,27 @@
+#FAB {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.4rem;
+    bottom: 2rem;
+    right: 2rem;
+    box-shadow: 0 0 0.4rem black;
+    background-color: var(--accent-colour);
+    color: var(--on-accent-colour);
+    padding: 0.5rem;
+}
+
+#plus {
+    font-size: 2rem;
+}
+
+#FAB .expanded {
+    transition: 500ms;
+}
+
+#FAB .small {
+    display: none;
+    transition: 500ms;
+}
