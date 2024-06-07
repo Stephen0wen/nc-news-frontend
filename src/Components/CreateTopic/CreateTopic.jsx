@@ -46,7 +46,7 @@ const CreateTopic = () => {
             description,
         };
         postTopic(requestBody).then(({ slug }) => {
-            navigate(`/create/article/${slug}`);
+            navigate(`/topics/${slug}`);
         });
     };
 
