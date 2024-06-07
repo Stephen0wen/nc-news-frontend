@@ -102,3 +102,7 @@ export const postTopic = (requestBody) => {
             return topic;
         });
 };
+
+export const deleteTopic = (slug) => {
+    return axios.delete(`https://so-news.onrender.com/api/topics/${slug}`);
+};
