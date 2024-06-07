@@ -3,6 +3,8 @@
     --primary-colour: rgba(255, 255, 255, 0.87);
     --secondary-colour: #777;
     --danger-colour: #300;
+    --accent-colour: #41458f;
+    --on-accent-colour: white;
 
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -81,16 +83,17 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--accent-colour);
+    color: var(--on-accent-colour);
     cursor: pointer;
     transition: border-color 0.25s;
 }
 button:hover {
-    border-color: #646cff;
+    border-color: var(--on-accent-colour);
 }
 button:focus,
 button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    outline: 4px auto var(--secondary-colour);
 }
 
 @media (prefers-color-scheme: light) {
@@ -99,11 +102,9 @@ button:focus-visible {
         --primary-colour: #213547;
         --secondary-colour: #999;
         --danger-colour: #d44d;
+        --accent-colour: #646cff;
     }
     a:hover {
         color: #005;
-    }
-    button {
-        background-color: #ddf;
     }
 }
