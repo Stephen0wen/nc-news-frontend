@@ -32,6 +32,15 @@ const Articles = ({ slug }) => {
             });
     }, [searchParams]);
 
+    const handleClick = () => {
+        if (isLoggedIn) {
+            navigate(`/create/article/${slug}`);
+        }
+        if (!isLoggedIn) {
+            setShowLoginPopup(true);
+        }
+    };
+
     if (isLoading) {
         return <LoadMsg message="Loading Articles..." />;
     }
@@ -40,7 +49,7 @@ const Articles = ({ slug }) => {
         return (
             <section id="articles" className="flex-center">
                 <p>There are no articles here yet!</p>
-                <button>Create an Article</button>
+                <button onClick={handleClick}>Create an Article</button>
             </section>
         );
     }
