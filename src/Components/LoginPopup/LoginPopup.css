@@ -29,6 +29,12 @@
     border: none;
 }
 
+#login-popup h3 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0.5rem;
+}
+
 #login-popup input {
     width: 50%;
     margin-left: 0.5rem;
@@ -42,7 +48,8 @@
 #login-close {
     position: relative;
     float: right;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
     padding: 0;
 }
