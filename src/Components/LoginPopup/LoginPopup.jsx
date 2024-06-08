@@ -55,6 +55,11 @@ const LoginPopup = () => {
                     X
                 </button>
                 <div id="signin-fields">
+                    <h3>
+                        In the future, this will be handled 'properly', but
+                        until then you can login as "tickle122", "jessjelly",
+                        "grumpy19" or "weegembump"...
+                    </h3>
                     <label>
                         Username
                         <input id="username" autoComplete="username"></input>

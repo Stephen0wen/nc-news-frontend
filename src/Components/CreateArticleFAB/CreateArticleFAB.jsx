@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useScrollDirection } from "use-scroll-direction";
 
 const CreateArticleFAB = () => {
-    const { isLoggedIn } = useContext(UserContext);
+    const { isLoggedIn, setShowLoginPopup } = useContext(UserContext);
     const { slug } = useParams();
     const [isExpanded, setIsExpanded] = useState(true);
     const [labelClass, setLabelClass] = useState("Create Article");
@@ -35,11 +35,10 @@ const CreateArticleFAB = () => {
         if (isLoggedIn) {
             navigate(`/create/article/${slug}`);
         }
+        if (!isLoggedIn) {
+            setShowLoginPopup(true);
+        }
     };
-
-    if (!isLoggedIn) {
-        return;
-    }
 
     return (
         <button id="FAB" onClick={handleClick}>
