@@ -12,7 +12,7 @@ const Login = () => {
 
     if (!isLoggedIn) {
         return (
-            <button id="login" onClick={handleClick}>
+            <button id="login-button" onClick={handleClick}>
                 Login
             </button>
         );

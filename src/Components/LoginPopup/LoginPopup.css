@@ -1,5 +1,9 @@
 #login-popup {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -7,49 +11,4 @@
     left: 0;
     z-index: 1;
     background-color: #000a;
-}
-
-#login-popup > form {
-    opacity: 1;
-    border: 1px solid var(--primary-colour);
-    width: 18rem;
-    height: 15rem;
-    background-color: var(--background-colour);
-    border-radius: 0.5rem;
-}
-
-#signin-fields {
-    margin-top: 2rem;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    border: none;
-}
-
-#login-popup h3 {
-    font-size: 0.8rem;
-    font-weight: 400;
-    margin: 0.5rem;
-}
-
-#login-popup input {
-    width: 50%;
-    margin-left: 0.5rem;
-}
-
-#login-popup p {
-    height: 1rem;
-    color: var(--danger-colour);
-}
-
-#login-close {
-    position: relative;
-    float: right;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;
-    padding: 0;
 }

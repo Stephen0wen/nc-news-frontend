@@ -1,14 +1,15 @@
 import "./LoginPopup.css";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext";
-import { getUser } from "../../APIs";
+import LoginForm from "../LoginForm/LoginForm";
+import SignUpForm from "../SignUpForm/SignUpForm";
 
 const LoginPopup = () => {
-    const { setIsLoggedIn, setUser, showLoginPopup, setShowLoginPopup } =
-        useContext(UserContext);
+    const { showLoginPopup } = useContext(UserContext);
 
     const [popupClasses, setPopupClasses] = useState("hidden");
     const [errorMsg, setErrorMsg] = useState("");
+    const [signUpToggle, setSignUpToggle] = useState(false);
 
     useEffect(() => {
         if (showLoginPopup) {
@@ -20,33 +21,15 @@ const LoginPopup = () => {
         }
     }, [showLoginPopup]);
 
-    const handleClose = () => {
-        setShowLoginPopup(false);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const enteredUser = event.target[1].value;
-        if (enteredUser === "") {
-            setErrorMsg("Enter username...");
-            return;
-        }
-        getUser(enteredUser)
-            .then((apiUser) => {
-                setUser(apiUser);
-                setIsLoggedIn(true);
-                setShowLoginPopup(false);
-            })
-            .catch((error) => {
-                console.log(error.message);
-                if (error.message) {
-                    setErrorMsg(error.message);
-                }
-                if (error.response.data.msg) {
-                    setErrorMsg(error.response.data.msg);
-                }
-            });
-    };
+    return (
+        <div id="login-popup" className={popupClasses}>
+            {signUpToggle ? (
+                <SignUpForm setSignUpToggle={setSignUpToggle} />
+            ) : (
+                <LoginForm setSignUpToggle={setSignUpToggle} />
+            )}
+        </div>
+    );
 
     return (
         <div id="login-popup" className={popupClasses}>
