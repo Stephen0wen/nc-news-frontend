@@ -15,6 +15,8 @@ export default function LoginForm({ setSignUpToggle }) {
 
     const handleClose = () => {
         setShowLoginPopup(false);
+        setEmail("");
+        setPassword("");
     };
 
     const updateEmail = (event) => {
@@ -33,7 +35,7 @@ export default function LoginForm({ setSignUpToggle }) {
 
     return (
         <>
-            <div id="login-container" onBlur={handleClose}>
+            <div id="login-container">
                 <button type="button" id="close" onClick={handleClose}>
                     X
                 </button>
@@ -41,11 +43,15 @@ export default function LoginForm({ setSignUpToggle }) {
                     <h2>Sign in to SO-NEWS</h2>
                     <label>
                         <p>Email</p>
-                        <input onBlur={updateEmail} />
+                        <input onChange={updateEmail} value={email} />
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type="password" onBlur={updatePassword} />
+                        <input
+                            type="password"
+                            onChange={updatePassword}
+                            value={password}
+                        />
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         LOGIN

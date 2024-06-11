@@ -16,6 +16,9 @@ export default function SignUpForm({ setSignUpToggle }) {
 
     const handleClose = () => {
         setShowLoginPopup(false);
+        setEmail("");
+        setPassword1("");
+        setPassword2("");
     };
 
     const updateEmail = (event) => {
@@ -38,7 +41,7 @@ export default function SignUpForm({ setSignUpToggle }) {
 
     return (
         <>
-            <div id="sign-up-container" onBlur={handleClose}>
+            <div id="sign-up-container">
                 <button type="button" id="close" onClick={handleClose}>
                     X
                 </button>
@@ -46,15 +49,23 @@ export default function SignUpForm({ setSignUpToggle }) {
                     <h2>Sign in to SO-NEWS</h2>
                     <label>
                         <p>Email</p>
-                        <input onBlur={updateEmail} />
+                        <input onChange={updateEmail} value={email} />
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type="password" onBlur={updatePassword1} />
+                        <input
+                            type="password"
+                            onChange={updatePassword1}
+                            value={password1}
+                        />
                     </label>
                     <label>
                         <p>Re-Type Password</p>
-                        <input type="password" onBlur={updatePassword2} />
+                        <input
+                            type="password"
+                            onChange={updatePassword2}
+                            value={password2}
+                        />
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         LOGIN

@@ -25,6 +25,8 @@
 #sign-up input {
     margin: 0;
     width: 14rem;
+    height: 1.2rem;
+    font-size: 1rem;
 }
 
 #sign-up p {
