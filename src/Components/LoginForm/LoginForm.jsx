@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext";
 import "./LoginForm.css";
+import GoogleButton from "../GoogleButton/GoogleButton";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -9,9 +10,7 @@ export default function LoginForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { setShowLoginPopup } = useContext(UserContext);
-
-    // const auth = firebase.auth();
+    const { setShowLoginPopup, setIsLoggedIn } = useContext(UserContext);
 
     const handleClose = () => {
         setShowLoginPopup(false);
@@ -27,7 +26,39 @@ export default function LoginForm({ setSignUpToggle }) {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {};
+    const googleSignIn = () => {
+        firebase
+            .auth()
+            .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+            .then((userCredential) => {
+                if (userCredential) {
+                    setIsLoggedIn(true);
+                }
+            })
+            .then(() => {
+                handleClose();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const handleSubmit = () => {
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                if (userCredential) {
+                    setIsLoggedIn(true);
+                }
+            })
+            .then(() => {
+                handleClose();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     const handleSignUpLink = () => {
         setSignUpToggle(true);
@@ -41,6 +72,8 @@ export default function LoginForm({ setSignUpToggle }) {
                 </button>
                 <form id="login">
                     <h2>Sign in to SO-NEWS</h2>
+                    <GoogleButton googleSignIn={googleSignIn} />
+                    or
                     <label>
                         <p>Email</p>
                         <input onChange={updateEmail} value={email} />
