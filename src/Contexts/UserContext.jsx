@@ -6,6 +6,7 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showLoginPopup, setShowLoginPopup] = useState(false);
+    const [authToken, setAuthToken] = useState("");
 
     return (
         <UserContext.Provider
@@ -16,6 +17,8 @@ export const UserProvider = ({ children }) => {
                 setIsLoggedIn,
                 showLoginPopup,
                 setShowLoginPopup,
+                authToken,
+                setAuthToken,
             }}
         >
             {children}

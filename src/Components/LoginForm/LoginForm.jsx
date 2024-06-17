@@ -10,7 +10,8 @@ export default function LoginForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { setShowLoginPopup, setIsLoggedIn } = useContext(UserContext);
+    const { setShowLoginPopup, setIsLoggedIn, setAuthToken } =
+        useContext(UserContext);
 
     const handleClose = () => {
         setShowLoginPopup(false);
@@ -33,6 +34,10 @@ export default function LoginForm({ setSignUpToggle }) {
             .then((userCredential) => {
                 if (userCredential) {
                     setIsLoggedIn(true);
+                    const {
+                        credential: { idToken },
+                    } = userCredential;
+                    setAuthToken(idToken);
                 }
             })
             .then(() => {
@@ -50,6 +55,10 @@ export default function LoginForm({ setSignUpToggle }) {
             .then((userCredential) => {
                 if (userCredential) {
                     setIsLoggedIn(true);
+                    const {
+                        credential: { idToken },
+                    } = userCredential;
+                    setAuthToken(idToken);
                 }
             })
             .then(() => {

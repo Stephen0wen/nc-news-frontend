@@ -11,7 +11,8 @@ export default function SignUpForm({ setSignUpToggle }) {
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
 
-    const { setShowLoginPopup, setIsLoggedIn } = useContext(UserContext);
+    const { setShowLoginPopup, setIsLoggedIn, setAuthToken } =
+        useContext(UserContext);
 
     const auth = firebase.auth();
 
@@ -40,6 +41,10 @@ export default function SignUpForm({ setSignUpToggle }) {
                 .then((userCredential) => {
                     if (userCredential) {
                         setIsLoggedIn(true);
+                        const {
+                            credential: { idToken },
+                        } = userCredential;
+                        setAuthToken(idToken);
                     }
                 })
                 .then(() => {
@@ -58,6 +63,10 @@ export default function SignUpForm({ setSignUpToggle }) {
             .then((userCredential) => {
                 if (userCredential) {
                     setIsLoggedIn(true);
+                    const {
+                        credential: { idToken },
+                    } = userCredential;
+                    setAuthToken(idToken);
                 }
             })
             .then(() => {
