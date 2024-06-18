@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// const baseURL = "https://so-news.onrender.com";
+const baseURL = "https://so-news.onrender.com";
 
-const baseURL = "http://localhost:9090";
+// const baseURL = "http://localhost:9090";
 
 export const getUser = (uuid, auth) => {
     return axios
