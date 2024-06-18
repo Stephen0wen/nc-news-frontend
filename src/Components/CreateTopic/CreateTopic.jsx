@@ -6,7 +6,8 @@ import { postTopic } from "../../APIs";
 
 const CreateTopic = () => {
     const navigate = useNavigate();
-    const { isLoggedIn, setShowLoginPopup } = useContext(UserContext);
+    const { isLoggedIn, setShowLoginPopup, authToken } =
+        useContext(UserContext);
 
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
@@ -45,7 +46,7 @@ const CreateTopic = () => {
             slug,
             description,
         };
-        postTopic(requestBody).then(({ slug }) => {
+        postTopic(requestBody, authToken).then(({ slug }) => {
             navigate(`/topics/${slug}`);
         });
     };

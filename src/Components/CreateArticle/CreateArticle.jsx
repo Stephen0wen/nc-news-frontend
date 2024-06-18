@@ -6,7 +6,7 @@ import "./CreateArticle.css";
 
 const CreateArticle = () => {
     const { slug } = useParams();
-    const { user, isLoggedIn } = useContext(UserContext);
+    const { isLoggedIn, authToken } = useContext(UserContext);
     const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
@@ -53,13 +53,12 @@ const CreateArticle = () => {
 
     const handlePost = () => {
         const requestBody = {
-            author: user.username,
             title,
             body,
             topic: slug,
             article_img_url: imgUrl,
         };
-        postArticle(requestBody)
+        postArticle(requestBody, authToken)
             .then(({ article_id }) => {
                 navigate(`/topics/${slug}/${article_id}`);
             })

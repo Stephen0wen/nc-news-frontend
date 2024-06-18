@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Delete.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteArticle, deleteComment } from "../../APIs";
+import { UserContext } from "../../Contexts/UserContext";
 
 const Delete = ({ comment_id, setIsDeleted }) => {
+    const { authToken } = useContext(UserContext);
     const { article_id, slug } = useParams();
     const [isDisabled, setIsDisabled] = useState(false);
     const navigate = useNavigate();
@@ -11,12 +13,12 @@ const Delete = ({ comment_id, setIsDeleted }) => {
     const handleClick = () => {
         setIsDisabled(true);
         if (comment_id) {
-            deleteComment(comment_id).then(() => {
+            deleteComment(comment_id, authToken).then(() => {
                 setIsDeleted(true);
             });
         }
         if (!comment_id && article_id) {
-            deleteArticle(article_id).then(() => {
+            deleteArticle(article_id, authToken).then(() => {
                 navigate(`/topics/${slug}`);
             });
         }

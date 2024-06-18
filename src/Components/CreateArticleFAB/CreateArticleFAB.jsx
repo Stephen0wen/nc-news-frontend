@@ -43,7 +43,7 @@ const CreateArticleFAB = () => {
     return (
         <button id="FAB" onClick={handleClick}>
             <span className={labelClass}>Create Article</span>
-            <span id="plus" class="material-symbols-outlined">
+            <span id="plus" className="material-symbols-outlined">
                 add
             </span>
         </button>

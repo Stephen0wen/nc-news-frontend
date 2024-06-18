@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Login.css";
 
 import { UserContext } from "../../Contexts/UserContext";
 
 const Login = () => {
-    const { user, isLoggedIn, setShowLoginPopup } = useContext(UserContext);
+    const { isLoggedIn, setShowLoginPopup, user } = useContext(UserContext);
 
     const handleClick = () => {
         setShowLoginPopup(true);
@@ -12,7 +12,7 @@ const Login = () => {
 
     if (!isLoggedIn) {
         return (
-            <button id="login" onClick={handleClick}>
+            <button id="login-button" onClick={handleClick}>
                 Login
             </button>
         );

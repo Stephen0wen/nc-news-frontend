@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { UserProvider } from "./Contexts/UserContext.jsx";
 import { ErrorProvider } from "./Contexts/ErrorContext.jsx";
+import "./Config/firebase-config.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
