@@ -93,33 +93,39 @@ export const patchComment = (comment_id, change) => {
         });
 };
 
-export const postComment = (article_id, requestBody) => {
+export const postComment = (article_id, requestBody, auth) => {
     return axios
-        .post(`${baseURL}/api/articles/${article_id}/comments`, requestBody)
+        .post(`${baseURL}/api/articles/${article_id}/comments`, requestBody, {
+            headers: { auth },
+        })
         .then(({ data: { comment } }) => {
             return comment;
         });
 };
 
-export const deleteComment = (comment_id) => {
-    return axios.delete(`${baseURL}/api/comments/${comment_id}`);
+export const deleteComment = (comment_id, auth) => {
+    return axios.delete(`${baseURL}/api/comments/${comment_id}`, {
+        headers: { auth },
+    });
 };
 
-export const postArticle = (requestBody) => {
+export const postArticle = (requestBody, auth) => {
     return axios
-        .post(`${baseURL}/api/articles`, requestBody)
+        .post(`${baseURL}/api/articles`, requestBody, { headers: { auth } })
         .then(({ data: { article } }) => {
             return article;
         });
 };
 
-export const deleteArticle = (article_id) => {
-    return axios.delete(`${baseURL}/api/articles/${article_id}`);
+export const deleteArticle = (article_id, auth) => {
+    return axios.delete(`${baseURL}/api/articles/${article_id}`, {
+        headers: { auth },
+    });
 };
 
-export const postTopic = (requestBody) => {
+export const postTopic = (requestBody, auth) => {
     return axios
-        .post(`${baseURL}/api/topics`, requestBody)
+        .post(`${baseURL}/api/topics`, requestBody, { headers: { auth } })
         .then(({ data: { topic } }) => {
             return topic;
         });

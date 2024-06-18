@@ -8,7 +8,8 @@ import { postComment, getComments } from "../../APIs";
 
 const CreateComment = ({ setComments }) => {
     const { article_id } = useParams();
-    const { user, isLoggedIn, setShowLoginPopup } = useContext(UserContext);
+    const { user, isLoggedIn, setShowLoginPopup, authToken } =
+        useContext(UserContext);
     const { setError } = useContext(ErrorContext);
     const [pending, setPending] = useState(false);
     const [newComment, setNewComment] = useState(null);
@@ -30,12 +31,7 @@ const CreateComment = ({ setComments }) => {
             article_id: article_id,
         });
 
-        const requestBody = {
-            username: user.username,
-            body: body,
-        };
-
-        postComment(article_id, requestBody)
+        postComment(article_id, { body }, authToken)
             .then((apiComment) => {
                 setNewComment(apiComment);
                 setPending(false);
