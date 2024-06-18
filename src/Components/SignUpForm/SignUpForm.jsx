@@ -5,13 +5,14 @@ import GoogleButton from "../GoogleButton/GoogleButton";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getUser, postUser } from "../../APIs";
 
 export default function SignUpForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
 
-    const { setShowLoginPopup, setIsLoggedIn, setAuthToken } =
+    const { setShowLoginPopup, setIsLoggedIn, setAuthToken, setUser } =
         useContext(UserContext);
 
     const auth = firebase.auth();
@@ -38,13 +39,13 @@ export default function SignUpForm({ setSignUpToggle }) {
     const handleSubmit = () => {
         if (password1 === password2) {
             auth.createUserWithEmailAndPassword(email, password1)
-                .then((userCredential) => {
-                    if (userCredential) {
+                .then(() => {
+                    return firebase.auth().currentUser.getIdToken();
+                })
+                .then((token) => {
+                    if (token) {
+                        setAuthToken(token);
                         setIsLoggedIn(true);
-                        const {
-                            credential: { idToken },
-                        } = userCredential;
-                        setAuthToken(idToken);
                     }
                 })
                 .then(() => {
@@ -60,13 +61,34 @@ export default function SignUpForm({ setSignUpToggle }) {
         firebase
             .auth()
             .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-            .then((userCredential) => {
-                if (userCredential) {
+            .then(({ user }) => {
+                return Promise.all([
+                    firebase.auth().currentUser.getIdToken(),
+                    user,
+                ]);
+            })
+            .then(([token, user]) => {
+                const { displayName, uid, photoURL } = user;
+                return Promise.all([
+                    token,
+                    uid,
+                    postUser({
+                        username: displayName,
+                        name: displayName,
+                        avatar_url: photoURL,
+                        uuid: uid,
+                        auth: token,
+                    }),
+                ]);
+            })
+            .then(([token, uuid, user]) => {
+                if (user) {
+                    setAuthToken(token);
                     setIsLoggedIn(true);
-                    const {
-                        credential: { idToken },
-                    } = userCredential;
-                    setAuthToken(idToken);
+                    setUser(user);
+                }
+                if (!user) {
+                    signIn(uuid, token);
                 }
             })
             .then(() => {
@@ -75,6 +97,14 @@ export default function SignUpForm({ setSignUpToggle }) {
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+    const signIn = (uuid, token) => {
+        getUser(uuid, token).then((user) => {
+            setAuthToken(token);
+            setIsLoggedIn(true);
+            setUser(user);
+        });
     };
 
     const handleLoginLink = () => {
@@ -90,7 +120,7 @@ export default function SignUpForm({ setSignUpToggle }) {
                 <form id="sign-up">
                     <h2>Sign up for SO-NEWS</h2>
                     <GoogleButton googleSignIn={googleSignIn} />
-                    or
+                    {/* or
                     <label>
                         <p>Email</p>
                         <input onChange={updateEmail} value={email} />
@@ -112,8 +142,8 @@ export default function SignUpForm({ setSignUpToggle }) {
                         />
                     </label>
                     <button type="button" onClick={handleSubmit}>
-                        LOGIN
-                    </button>
+                        SIGN UP
+                    </button> */}
                 </form>
             </div>
             <p id="under-form-message">

@@ -5,12 +5,13 @@ import GoogleButton from "../GoogleButton/GoogleButton";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { getUser, postUser } from "../../APIs";
 
 export default function LoginForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { setShowLoginPopup, setIsLoggedIn, setAuthToken } =
+    const { setShowLoginPopup, setIsLoggedIn, setAuthToken, setUser } =
         useContext(UserContext);
 
     const handleClose = () => {
@@ -31,13 +32,34 @@ export default function LoginForm({ setSignUpToggle }) {
         firebase
             .auth()
             .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-            .then((userCredential) => {
-                if (userCredential) {
+            .then(({ user }) => {
+                return Promise.all([
+                    firebase.auth().currentUser.getIdToken(),
+                    user,
+                ]);
+            })
+            .then(([token, user]) => {
+                const { displayName, uid, photoURL } = user;
+                return Promise.all([
+                    token,
+                    uid,
+                    postUser({
+                        username: displayName,
+                        name: displayName,
+                        avatar_url: photoURL,
+                        uuid: uid,
+                        auth: token,
+                    }),
+                ]);
+            })
+            .then(([token, uuid, user]) => {
+                if (user) {
+                    setAuthToken(token);
                     setIsLoggedIn(true);
-                    const {
-                        credential: { idToken },
-                    } = userCredential;
-                    setAuthToken(idToken);
+                    setUser(user);
+                }
+                if (!user) {
+                    signIn(uuid, token);
                 }
             })
             .then(() => {
@@ -48,17 +70,26 @@ export default function LoginForm({ setSignUpToggle }) {
             });
     };
 
+    const signIn = (uuid, token) => {
+        getUser(uuid, token).then((user) => {
+            setAuthToken(token);
+            setIsLoggedIn(true);
+            setUser(user);
+        });
+    };
+
     const handleSubmit = () => {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                if (userCredential) {
+            .then(() => {
+                return firebase.auth().currentUser.getIdToken();
+            })
+            .then((token) => {
+                if (token) {
+                    setAuthToken(token);
                     setIsLoggedIn(true);
-                    const {
-                        credential: { idToken },
-                    } = userCredential;
-                    setAuthToken(idToken);
+                    console.log(token);
                 }
             })
             .then(() => {
@@ -82,7 +113,7 @@ export default function LoginForm({ setSignUpToggle }) {
                 <form id="login">
                     <h2>Sign in to SO-NEWS</h2>
                     <GoogleButton googleSignIn={googleSignIn} />
-                    or
+                    {/* or
                     <label>
                         <p>Email</p>
                         <input onChange={updateEmail} value={email} />
@@ -97,7 +128,7 @@ export default function LoginForm({ setSignUpToggle }) {
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         LOGIN
-                    </button>
+                    </button> */}
                 </form>
             </div>
             <p id="under-form-message">
