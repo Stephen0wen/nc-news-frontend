@@ -35,6 +35,10 @@
     text-align: left;
 }
 
+#login .warning {
+    color: var(--danger-colour);
+}
+
 #login button {
     width: 7rem;
 }

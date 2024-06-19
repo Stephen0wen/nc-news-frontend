@@ -10,6 +10,10 @@ import { getUser, postUser } from "../../APIs";
 export default function LoginForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [warnings, setWarnings] = useState({
+        email: "",
+        password: "",
+    });
 
     const { setShowLoginPopup, setIsLoggedIn, setAuthToken, setUser } =
         useContext(UserContext);
@@ -88,8 +92,23 @@ export default function LoginForm({ setSignUpToggle }) {
                 handleClose();
             })
             .catch((error) => {
-                console.log(error);
+                handleError(error);
             });
+    };
+
+    const handleError = (error) => {
+        if (error.code === "auth/invalid-email") {
+            setWarnings({ email: "Invalid Email", password: "" });
+        }
+        if (error.code === "auth/missing-password") {
+            setWarnings({ email: "", password: "Enter Password" });
+        }
+        if (error.code === "auth/invalid-credential") {
+            setWarnings({
+                email: "",
+                password: "Incorrect email or password",
+            });
+        }
     };
 
     const signIn = (uid, token) => {
@@ -117,6 +136,7 @@ export default function LoginForm({ setSignUpToggle }) {
                     <label>
                         <p>Email</p>
                         <input onChange={updateEmail} value={email} />
+                        <p className="warning">{warnings.email}</p>
                     </label>
                     <label>
                         <p>Password</p>
@@ -125,6 +145,7 @@ export default function LoginForm({ setSignUpToggle }) {
                             onChange={updatePassword}
                             value={password}
                         />
+                        <p className="warning">{warnings.password}</p>
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         LOGIN

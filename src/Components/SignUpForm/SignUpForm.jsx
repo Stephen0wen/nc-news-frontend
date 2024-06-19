@@ -11,6 +11,7 @@ export default function SignUpForm({ setSignUpToggle }) {
     const [displayName, setDisplayName] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
+    const [errors, setErrors] = useState({});
 
     const { setShowLoginPopup, setIsLoggedIn, setAuthToken, setUser } =
         useContext(UserContext);

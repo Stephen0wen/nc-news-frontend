@@ -2,7 +2,7 @@
     --background-colour: #242424;
     --primary-colour: rgba(255, 255, 255, 0.87);
     --secondary-colour: #777;
-    --danger-colour: #300;
+    --danger-colour: rgb(255, 20, 20);
     --accent-colour: #41458f;
     --on-accent-colour: white;
 
@@ -101,7 +101,7 @@ button:focus-visible {
         --background-colour: #ffe;
         --primary-colour: #213547;
         --secondary-colour: #999;
-        --danger-colour: #d44d;
+        --danger-colour: rgb(255, 0, 0);
         --accent-colour: #646cff;
     }
     a:hover {
