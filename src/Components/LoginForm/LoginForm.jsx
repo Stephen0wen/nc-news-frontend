@@ -18,6 +18,7 @@ export default function LoginForm({ setSignUpToggle }) {
         setShowLoginPopup(false);
         setEmail("");
         setPassword("");
+        setSignUpToggle(false);
     };
 
     const updateEmail = (event) => {
@@ -70,27 +71,18 @@ export default function LoginForm({ setSignUpToggle }) {
             });
     };
 
-    const signIn = (uuid, token) => {
-        getUser(uuid, token).then((user) => {
-            setAuthToken(token);
-            setIsLoggedIn(true);
-            setUser(user);
-        });
-    };
-
     const handleSubmit = () => {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then(() => {
-                return firebase.auth().currentUser.getIdToken();
+            .then(({ user: { uid } }) => {
+                return Promise.all([
+                    firebase.auth().currentUser.getIdToken(),
+                    uid,
+                ]);
             })
-            .then((token) => {
-                if (token) {
-                    setAuthToken(token);
-                    setIsLoggedIn(true);
-                    console.log(token);
-                }
+            .then(([token, uid]) => {
+                signIn(uid, token);
             })
             .then(() => {
                 handleClose();
@@ -98,6 +90,14 @@ export default function LoginForm({ setSignUpToggle }) {
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+    const signIn = (uid, token) => {
+        getUser(uid, token).then((user) => {
+            setAuthToken(token);
+            setIsLoggedIn(true);
+            setUser(user);
+        });
     };
 
     const handleSignUpLink = () => {
@@ -113,7 +113,7 @@ export default function LoginForm({ setSignUpToggle }) {
                 <form id="login">
                     <h2>Sign in to SO-NEWS</h2>
                     <GoogleButton googleSignIn={googleSignIn} />
-                    {/* or
+                    or
                     <label>
                         <p>Email</p>
                         <input onChange={updateEmail} value={email} />
@@ -128,7 +128,7 @@ export default function LoginForm({ setSignUpToggle }) {
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         LOGIN
-                    </button> */}
+                    </button>
                 </form>
             </div>
             <p id="under-form-message">
