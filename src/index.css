@@ -89,11 +89,7 @@ button {
     transition: border-color 0.25s;
 }
 button:hover {
-    border-color: var(--on-accent-colour);
-}
-button:focus,
-button:focus-visible {
-    outline: 4px auto var(--secondary-colour);
+    border-color: var(--background-colour);
 }
 
 @media (prefers-color-scheme: light) {
