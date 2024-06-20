@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 0.5rem;
     width: 100%;
 }
 
@@ -31,8 +31,16 @@
 
 #sign-up p {
     margin: 0;
-    width: 100%;
     text-align: left;
+    width: 14rem;
+}
+
+#sign-up .warning {
+    color: var(--danger-colour);
+    height: 1.5rem;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    margin-top: 2px;
 }
 
 #sign-up button {

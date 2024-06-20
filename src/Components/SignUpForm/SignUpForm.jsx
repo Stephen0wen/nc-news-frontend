@@ -1,50 +1,85 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../Contexts/UserContext";
 import "./SignUpForm.css";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { postUser } from "../../APIs";
+import {
+    getEmailWarning,
+    getNameWarning,
+    getPasswordWarning,
+} from "../../utils";
 
 export default function SignUpForm({ setSignUpToggle }) {
     const [email, setEmail] = useState("");
     const [displayName, setDisplayName] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-    const [errors, setErrors] = useState({});
+    const [validForm, setValidForm] = useState(false);
+    const [emailWarning, setEmailWarning] = useState("");
+    const [displayNameWarning, setDisplayNameWarning] = useState("");
+    const [password1Warning, setPassword1Warning] = useState("");
+    const [password2Warning, setPassword2Warning] = useState("");
 
     const { setShowLoginPopup, setIsLoggedIn, setAuthToken, setUser } =
         useContext(UserContext);
 
     const auth = firebase.auth();
 
+    useEffect(() => {
+        const isValid = [
+            emailWarning,
+            displayNameWarning,
+            password1Warning,
+            password2Warning,
+        ].every((warning) => !warning);
+        console.log(isValid);
+        setValidForm(isValid);
+    }, [emailWarning, displayNameWarning, password1Warning, password2Warning]);
+
     const handleClose = () => {
         setShowLoginPopup(false);
         setEmail("");
+        setEmailWarning("");
         setDisplayName("");
+        setDisplayNameWarning("");
         setPassword1("");
         setPassword2("");
         setSignUpToggle(false);
     };
 
     const updateEmail = (event) => {
-        setEmail(event.target.value);
+        const newEmail = event.target.value;
+        setEmail(newEmail);
+        const warning = getEmailWarning(newEmail);
+        setEmailWarning(warning);
     };
 
     const updateName = (event) => {
-        setDisplayName(event.target.value);
+        const newName = event.target.value;
+        setDisplayName(newName);
+        const warning = getNameWarning(newName);
+        setDisplayNameWarning(warning);
     };
 
     const updatePassword1 = (event) => {
-        setPassword1(event.target.value);
+        const newPassword = event.target.value;
+        setPassword1(newPassword);
+        const warning = getPasswordWarning(newPassword);
+        setPassword1Warning(warning);
     };
 
     const updatePassword2 = (event) => {
-        setPassword2(event.target.value);
+        const newPassword = event.target.value;
+        setPassword2(newPassword);
+        const warning =
+            newPassword === password1 ? "" : "Passwords do not match";
+        setPassword2Warning(warning);
     };
 
     const handleSubmit = () => {
-        if (password1 === password2) {
+        if (validForm) {
             auth.createUserWithEmailAndPassword(email, password1)
                 .then(({ user: { uid } }) => {
                     return Promise.all([
@@ -76,7 +111,11 @@ export default function SignUpForm({ setSignUpToggle }) {
                     handleClose();
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if (error.code === "auth/email-already-in-use") {
+                        setEmailWarning(
+                            "There is already an account registered with that email address"
+                        );
+                    }
                 });
         }
     };
@@ -95,7 +134,8 @@ export default function SignUpForm({ setSignUpToggle }) {
                     <h2>Sign up for SO-NEWS</h2>
                     <label>
                         <p>Email</p>
-                        <input onChange={updateEmail} value={email} />
+                        <input type="email" onBlur={updateEmail} />
+                        <p className="warning">{emailWarning}</p>
                     </label>
                     <label>
                         <p>Display Name</p>
@@ -104,8 +144,8 @@ export default function SignUpForm({ setSignUpToggle }) {
                             onChange={updateName}
                             value={displayName}
                         />
+                        <p className="warning">{displayNameWarning}</p>
                     </label>
-
                     <label>
                         <p>Password</p>
                         <input
@@ -113,6 +153,7 @@ export default function SignUpForm({ setSignUpToggle }) {
                             onChange={updatePassword1}
                             value={password1}
                         />
+                        <p className="warning">{password1Warning}</p>
                     </label>
                     <label>
                         <p>Re-Type Password</p>
@@ -121,6 +162,7 @@ export default function SignUpForm({ setSignUpToggle }) {
                             onChange={updatePassword2}
                             value={password2}
                         />
+                        <p className="warning">{password2Warning}</p>
                     </label>
                     <button type="button" onClick={handleSubmit}>
                         SIGN UP
