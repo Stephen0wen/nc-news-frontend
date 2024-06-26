@@ -1,28 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import "./Login.css";
 
 import { UserContext } from "../../Contexts/UserContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const { isLoggedIn, setShowLoginPopup, user } = useContext(UserContext);
 
-    const handleClick = () => {
+    const openLoginForm = () => {
         setShowLoginPopup(true);
     };
 
     if (!isLoggedIn) {
         return (
-            <button id="login-button" onClick={handleClick}>
+            <button id="login-button" onClick={openLoginForm}>
                 Login
             </button>
         );
     }
     if (isLoggedIn) {
         return (
-            <div id="user-display">
+            <Link to="/user" id="user-display">
                 <h2>{user.name}</h2>
                 <img id="avatar" src={user.avatar_url} />
-            </div>
+            </Link>
         );
     }
 };

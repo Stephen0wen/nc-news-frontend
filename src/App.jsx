@@ -9,6 +9,7 @@ import { ErrorContext } from "./Contexts/ErrorContext";
 import ErrorDisplay from "./Components/ErrorDisplay/ErrorDisplay";
 import CreateArticle from "./Components/CreateArticle/CreateArticle";
 import CreateTopic from "./Components/CreateTopic/CreateTopic";
+import UserPage from "./Components/UserPage/UserPage";
 
 function App() {
     const { error } = useContext(ErrorContext);
@@ -26,6 +27,7 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/user" element={<UserPage />} />
                 <Route path="/topics/:slug" element={<Topic />} />
                 <Route path="/topics/:slug/:article_id" element={<Article />} />
                 <Route
