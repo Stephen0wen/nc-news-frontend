@@ -1,0 +1,16 @@
+#user-page {
+    margin: 1rem 0;
+    gap: 0.5rem;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+#user-page h2 {
+    font-size: 1.5rem;
+}
+
+#user-page img {
+    border-radius: 50%;
+    height: 10rem;
+}

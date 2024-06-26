@@ -1,6 +1,7 @@
 #user-display {
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 #user-display > h2 {
